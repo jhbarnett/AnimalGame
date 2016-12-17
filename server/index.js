@@ -10,6 +10,10 @@ App.use(BodyParser.json())
 
 App.use(BodyParser.urlencoded({extended: true}))
 
+App.get('/*', function(req, res){
+  res.sendFile(assetFolder + '/index.html')
+})
+
 const port = process.env.PORT || 8080
 
 App.listen(port)
