@@ -4,18 +4,13 @@ const BodyParser = require('body-parser')
 const App = Express()
 const Routes = require('./routes')
 
-const assetFolder = Path.resolve(__dirname, '../public')
-
 App.use(BodyParser.json())
-
 App.use(BodyParser.urlencoded({extended: true}))
 
-App.get('/*', function(req, res){
-  res.sendFile(assetFolder + '/index.html')
-})
+App.use(Express.static(Path.join(__dirname, '../public')));
 
 const port = process.env.PORT || 8080
 
-App.listen(port)
-
-console.log(`Listening on port ${port}...`)
+const server = App.listen(port, () => {
+  console.log(`Listening on port ${port}...`)
+})
