@@ -11,8 +11,7 @@ class Play extends React.Component {
     return (
       <div>  
         <h1> Play </h1>
-        <Answer />
-        <Ask />
+        {this.props.children}
       </div>  
     )
   }

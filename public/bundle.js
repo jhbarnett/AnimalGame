@@ -34,6 +34,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = require('react-router');
+
 var _Lobby = require('./Lobby.jsx');
 
 var _Lobby2 = _interopRequireDefault(_Lobby);
@@ -79,9 +81,9 @@ var App = function (_React$Component) {
                             'div',
                             { className: 'navbar-header' },
                             _react2.default.createElement(
-                                'a',
-                                { className: 'navbar-brand', href: '#' },
-                                'Lobby'
+                                _reactRouter.Link,
+                                { className: 'navbar-brand', to: '#' },
+                                'The Animal Game'
                             )
                         ),
                         _react2.default.createElement(
@@ -92,24 +94,28 @@ var App = function (_React$Component) {
                                 { className: 'nav navbar-nav' },
                                 _react2.default.createElement(
                                     'li',
-                                    { className: 'active' },
+                                    null,
                                     _react2.default.createElement(
-                                        'a',
-                                        { href: '/new' },
-                                        'New Game',
-                                        _react2.default.createElement(
-                                            'span',
-                                            { className: 'sr-only' },
-                                            '(current)'
-                                        )
+                                        _reactRouter.Link,
+                                        { to: '/#/lobby' },
+                                        'Lobby'
                                     )
                                 ),
                                 _react2.default.createElement(
                                     'li',
                                     null,
                                     _react2.default.createElement(
-                                        'a',
-                                        { href: '/#/play' },
+                                        _reactRouter.Link,
+                                        { to: '/#/new' },
+                                        'New Game'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        _reactRouter.Link,
+                                        { to: '/#/play' },
                                         'Account'
                                     )
                                 )
@@ -131,7 +137,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"./Lobby.jsx":4,"./NewGame.jsx":5,"./Play.jsx":6,"react":237}],3:[function(require,module,exports){
+},{"./Lobby.jsx":4,"./NewGame.jsx":5,"./Play.jsx":6,"react":237,"react-router":206}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -295,8 +301,7 @@ var Play = function (_React$Component) {
           null,
           ' Play '
         ),
-        _react2.default.createElement(_Answer2.default, null),
-        _react2.default.createElement(_Ask2.default, null)
+        this.props.children
       );
     }
   }]);
@@ -333,6 +338,14 @@ var _Play = require('./components/Play.jsx');
 
 var _Play2 = _interopRequireDefault(_Play);
 
+var _Ask = require('./components/Ask.jsx');
+
+var _Ask2 = _interopRequireDefault(_Ask);
+
+var _Answer = require('./components/Answer.jsx');
+
+var _Answer2 = _interopRequireDefault(_Answer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -341,13 +354,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: _App2.default },
-    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Lobby2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/lobby', component: _Lobby2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: '/new', component: _NewGame2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/play/:id', component: _Play2.default })
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { path: '/play/:id', component: _Play2.default },
+      _react2.default.createElement(_reactRouter.Route, { path: '/ask/:id', component: _Ask2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: '/answer/:id', component: _Answer2.default })
+    )
   )
 ), document.getElementById('root'));
 
-},{"./components/App.jsx":2,"./components/Lobby.jsx":4,"./components/NewGame.jsx":5,"./components/Play.jsx":6,"react":237,"react-dom":53,"react-router":206}],8:[function(require,module,exports){
+},{"./components/Answer.jsx":1,"./components/App.jsx":2,"./components/Ask.jsx":3,"./components/Lobby.jsx":4,"./components/NewGame.jsx":5,"./components/Play.jsx":6,"react":237,"react-dom":53,"react-router":206}],8:[function(require,module,exports){
 (function (process){
 'use strict';
 
