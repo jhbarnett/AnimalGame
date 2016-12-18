@@ -1,4 +1,6 @@
 import React from 'react'
+import Answer from './Answer.jsx'
+import Ask from './Ask.jsx'
 
 class Play extends React.Component {
   constructor(props) {
@@ -7,7 +9,11 @@ class Play extends React.Component {
 
   render() {
     return (
-      <h1> Play </h1>
+      <div>  
+        <h1> Play </h1>
+        <Answer />
+        <Ask />
+      </div>  
     )
   }
 }
