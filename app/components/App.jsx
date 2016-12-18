@@ -9,7 +9,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1> HELLOOOO WORLD </h1>
+      <div>
+        <h1> Merry Xmas Hot Pocket! </h1>
+        <h2> Click to Unwrap Your Present! </h2> 
+      </div>
     )
   }
 }
