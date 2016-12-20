@@ -25,7 +25,7 @@ exports.default = Answer;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -48,6 +48,14 @@ var _Play = require('./Play.jsx');
 
 var _Play2 = _interopRequireDefault(_Play);
 
+var _Ask = require('./Ask.jsx');
+
+var _Ask2 = _interopRequireDefault(_Ask);
+
+var _Answer = require('./Answer.jsx');
+
+var _Answer2 = _interopRequireDefault(_Answer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57,87 +65,87 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+  _inherits(App, _React$Component);
 
-    function App(props) {
-        _classCallCheck(this, App);
+  function App(props) {
+    _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-    }
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+  }
 
-    _createClass(App, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'nav',
+          { className: 'navbar navbar-default' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'navbar-header' },
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { className: 'navbar-brand', to: '#' },
+                'The Animal Game'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+              _react2.default.createElement(
+                'ul',
+                { className: 'nav navbar-nav' },
                 _react2.default.createElement(
-                    'nav',
-                    { className: 'navbar navbar-default' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'container-fluid' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'navbar-header' },
-                            _react2.default.createElement(
-                                _reactRouter.Link,
-                                { className: 'navbar-brand', to: '#' },
-                                'The Animal Game'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-                            _react2.default.createElement(
-                                'ul',
-                                { className: 'nav navbar-nav' },
-                                _react2.default.createElement(
-                                    'li',
-                                    null,
-                                    _react2.default.createElement(
-                                        _reactRouter.Link,
-                                        { to: '/#/lobby' },
-                                        'Lobby'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'li',
-                                    null,
-                                    _react2.default.createElement(
-                                        _reactRouter.Link,
-                                        { to: '/#/new' },
-                                        'New Game'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'li',
-                                    null,
-                                    _react2.default.createElement(
-                                        _reactRouter.Link,
-                                        { to: '/#/play' },
-                                        'Account'
-                                    )
-                                )
-                            )
-                        )
-                    )
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: '/lobby' },
+                    'Lobby'
+                  )
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'container' },
-                    this.props.children
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: '/new' },
+                    'New Game'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: '/play' },
+                    'Account'
+                  )
                 )
-            );
-        }
-    }]);
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          this.props.children
+        )
+      );
+    }
+  }]);
 
-    return App;
+  return App;
 }(_react2.default.Component);
 
 exports.default = App;
 
-},{"./Lobby.jsx":4,"./NewGame.jsx":5,"./Play.jsx":6,"react":237,"react-router":206}],3:[function(require,module,exports){
+},{"./Answer.jsx":1,"./Ask.jsx":3,"./Lobby.jsx":4,"./NewGame.jsx":5,"./Play.jsx":6,"react":237,"react-router":206}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -240,9 +248,19 @@ var NewGame = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'h1',
+        'div',
         null,
-        ' NewGame '
+        _react2.default.createElement(
+          'h1',
+          null,
+          ' New Game '
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          ' Choose An Animal: '
+        ),
+        _react2.default.createElement('input', { type: 'text' })
       );
     }
   }]);
@@ -322,10 +340,6 @@ var _reactDom = require('react-dom');
 
 var _reactRouter = require('react-router');
 
-var _App = require('./components/App.jsx');
-
-var _App2 = _interopRequireDefault(_App);
-
 var _Lobby = require('./components/Lobby.jsx');
 
 var _Lobby2 = _interopRequireDefault(_Lobby);
@@ -346,11 +360,15 @@ var _Answer = require('./components/Answer.jsx');
 
 var _Answer2 = _interopRequireDefault(_Answer);
 
+var _App = require('./components/App.jsx');
+
+var _App2 = _interopRequireDefault(_App);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRouter.Router,
-  { history: _reactRouter.browserHistory },
+  { history: _reactRouter.hashHistory },
   _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: _App2.default },
@@ -358,9 +376,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     _react2.default.createElement(_reactRouter.Route, { path: '/new', component: _NewGame2.default }),
     _react2.default.createElement(
       _reactRouter.Route,
-      { path: '/play/:id', component: _Play2.default },
-      _react2.default.createElement(_reactRouter.Route, { path: '/ask/:id', component: _Ask2.default }),
-      _react2.default.createElement(_reactRouter.Route, { path: '/answer/:id', component: _Answer2.default })
+      { path: '/play', component: _Play2.default },
+      _react2.default.createElement(_reactRouter.Route, { path: '/ask', component: _Ask2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: '/answer', component: _Answer2.default })
     )
   )
 ), document.getElementById('root'));

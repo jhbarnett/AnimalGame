@@ -7,7 +7,11 @@ class NewGame extends React.Component {
 
   render() {
     return (
-      <h1> NewGame </h1> 
+      <div>  
+        <h1> New Game </h1>
+        <h3> Choose An Animal: </h3>
+        <input type='text'/>
+      </div>  
     )
   }
 }
