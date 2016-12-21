@@ -236,16 +236,18 @@ var Lobby = function (_React$Component) {
             _react2.default.createElement(
               'div',
               null,
-              ' animal: ',
-              game.animal,
-              ' '
-            ),
-            _react2.default.createElement(
-              'div',
-              null,
-              ' count: ',
-              game.qCount,
-              ' '
+              _react2.default.createElement(
+                'span',
+                null,
+                'animal: ',
+                game.animal
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                'count: ',
+                game.qCount
+              )
             )
           );
         })

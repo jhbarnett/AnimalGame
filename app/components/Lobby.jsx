@@ -16,9 +16,7 @@ class Lobby extends React.Component {
   getGames(){
     axios.get('/api/openGames')
     .then(games => {
-      console.log('pre', games)
       this.setState({games: games.data})
-      console.log('post', this.state.games)
     })
   }
 

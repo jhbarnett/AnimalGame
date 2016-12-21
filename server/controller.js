@@ -1,12 +1,10 @@
-const Model = require('./model')
+const { Game } = require('./model')
 const http = require('http')
 
 const options = {
   host: 'wikipedia.org',
   path: '/wiki/List_of_animal_names'
 }
-
-const openGames = []
 
 module.exports = {
   getAnimalNames: function() {
@@ -20,23 +18,30 @@ module.exports = {
       })
     })
   },
-  createNewGame: function(req, res) {
-    console.log('create new game with', req.body.animal)
-    const game = {
-      animal: req.body.animal,
-      player1: null,
-      player2: null,
-      qCount: 0
-    }
-    openGames.unshift(game)
-    console.log('added to open games server side', openGames[0])
-    res.status(200).send(game).end()
+  createNewGame: (req, res) => {
+    return new Promise(
+      function(reject, resolve){
+        console.log('create new game with', req.body.animal)
+        const game = {
+          id: Number,
+          animal: String,
+          player1: String,
+          player2: String,
+          questions: [{Q: String, A: String}],
+          count: Number,
+          complete: Boolean
+        }
+        new Game(game).save()
+      })
+    .then(game => {
+      console.log('inserted to db')
+      res.status(200).send(game).end()
+    })
+    .catch(err => {console.log(err)})
   },
   getOpenGames: function(req, res) {
     console.log('got open games server side', openGames)
+    
     res.status(200).send(openGames).end()
   }
-
 }
-
-// module.exports.getAnimalNames()
