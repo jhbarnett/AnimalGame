@@ -6,6 +6,8 @@ const options = {
   path: '/wiki/List_of_animal_names'
 }
 
+const openGames = []
+
 module.exports = {
   getAnimalNames: function() {
     http.get(options, function(response){
@@ -17,7 +19,24 @@ module.exports = {
         console.log('end')
       })
     })
+  },
+  createNewGame: function(req, res) {
+    console.log('create new game with', req.body.animal)
+    const game = {
+      animal: req.body.animal,
+      player1: null,
+      player2: null,
+      qCount: 0
+    }
+    openGames.push(game)
+      console.log('added to open games server side')
+    res.status(200).send(game).end()
+  },
+  getOpenGames: function(req, res) {
+    console.log('got open games server side')
+    res.status(200).send(openGames).end()
   }
+
 }
 
 // module.exports.getAnimalNames()

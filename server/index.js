@@ -9,6 +9,8 @@ App.use(BodyParser.urlencoded({extended: true}))
 
 App.use(Express.static(Path.join(__dirname, '../public')));
 
+App.use('/', Routes)
+
 const port = process.env.PORT || 8080
 
 const server = App.listen(port, () => {
