@@ -5,7 +5,7 @@ const DB = mongoose.connect(
 const Schema = mongoose.Schema
 
 const gameSchema = new Schema({
-  id: Number,
+  id: String,
   animal: String,
   player1: String,
   player2: String,

@@ -218,9 +218,7 @@ var Lobby = function (_React$Component) {
       var _this2 = this;
 
       _axios2.default.get('/api/openGames').then(function (games) {
-        console.log('pre', games);
         _this2.setState({ games: games.data });
-        console.log('post', _this2.state.games);
       });
     }
   }, {

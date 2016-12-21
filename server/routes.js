@@ -6,4 +6,6 @@ Router.post('/api/newGame', (req, res) => Ctrl.createNewGame(req, res))
 
 Router.get('/api/openGames', (req, res) => Ctrl.getOpenGames(req, res))
 
+Router.get('/api/updateGame/:id', (req, res) => {})
+
 module.exports = Router
