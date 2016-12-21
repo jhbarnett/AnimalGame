@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router'
 
 class Lobby extends React.Component {
   constructor(props) {
@@ -10,10 +11,10 @@ class Lobby extends React.Component {
   }
 
   componentDidMount(){
-    this.getGames()
+    this.getOpenGames()
   }
 
-  getGames(){
+  getOpenGames(){
     axios.get('/api/openGames')
     .then(games => {
       this.setState({games: games.data})
@@ -25,10 +26,10 @@ class Lobby extends React.Component {
       <div>
       {
         this.state.games.map(game => 
-          <div>
-            <div><span>animal: {game.animal}</span>
-            <span>count: {game.qCount}</span></div>
-          </div>
+          <Link to={`/play/${game.id}`}>
+            <div><span>animal: {game.animal}</span><br/>
+            <span>{game.count} of 21</span></div>
+          </Link>
         )
       }
       </div>

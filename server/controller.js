@@ -33,7 +33,6 @@ module.exports = {
     }
 
     new Game(game).save()
-    .then(suc => console.log(suc))
     .catch(err => console.log(err))
 
     res.status(200).send(game).end()
@@ -56,5 +55,11 @@ module.exports = {
     }
     Game.findOneAndUpdate(game)
     .then(game => res.status(200).send(game).end())
+  },
+  getSingleGame: (req, res) => {
+    Game.find({id: req.params.id})
+    .then(game => 
+      res.status(200).send(game).end())
+    .catch(err => console.log(err))
   }
 }

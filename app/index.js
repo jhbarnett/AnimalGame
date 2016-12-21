@@ -13,9 +13,6 @@ render( <Router history={hashHistory} >
           <Route path='/' component={App} >
             <Route path='/lobby' component={Lobby} />
             <Route path='/new' component={NewGame} />
-            <Route path='/play' component={Play} >
-              <Route path='/ask' component={Ask} />
-              <Route path='/answer' component={Answer} />
-            </Route>
+            <Route path='/play/:id' component={Play} />
           </Route>
         </Router> , document.getElementById('root'))

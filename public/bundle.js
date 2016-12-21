@@ -117,15 +117,6 @@ var App = function (_React$Component) {
                     { to: '/new' },
                     'New Game'
                   )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouter.Link,
-                    { to: '/play' },
-                    'Account'
-                  )
                 )
               )
             )
@@ -185,6 +176,8 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _reactRouter = require('react-router');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -210,11 +203,11 @@ var Lobby = function (_React$Component) {
   _createClass(Lobby, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.getGames();
+      this.getOpenGames();
     }
   }, {
-    key: 'getGames',
-    value: function getGames() {
+    key: 'getOpenGames',
+    value: function getOpenGames() {
       var _this2 = this;
 
       _axios2.default.get('/api/openGames').then(function (games) {
@@ -229,8 +222,8 @@ var Lobby = function (_React$Component) {
         null,
         this.state.games.map(function (game) {
           return _react2.default.createElement(
-            'div',
-            null,
+            _reactRouter.Link,
+            { to: '/play/' + game.id },
             _react2.default.createElement(
               'div',
               null,
@@ -240,11 +233,12 @@ var Lobby = function (_React$Component) {
                 'animal: ',
                 game.animal
               ),
+              _react2.default.createElement('br', null),
               _react2.default.createElement(
                 'span',
                 null,
-                'count: ',
-                game.qCount
+                game.count,
+                ' of 21'
               )
             )
           );
@@ -258,7 +252,7 @@ var Lobby = function (_React$Component) {
 
 exports.default = Lobby;
 
-},{"axios":8,"react":262}],5:[function(require,module,exports){
+},{"axios":8,"react":262,"react-router":231}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -363,6 +357,10 @@ var _Ask = require('./Ask.jsx');
 
 var _Ask2 = _interopRequireDefault(_Ask);
 
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -377,21 +375,40 @@ var Play = function (_React$Component) {
   function Play(props) {
     _classCallCheck(this, Play);
 
-    return _possibleConstructorReturn(this, (Play.__proto__ || Object.getPrototypeOf(Play)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Play.__proto__ || Object.getPrototypeOf(Play)).call(this, props));
+
+    _this.state = {
+      game: []
+    };
+    return _this;
   }
 
   _createClass(Play, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getSingleGame();
+    }
+  }, {
+    key: 'getSingleGame',
+    value: function getSingleGame() {
+      var _this2 = this;
+
+      var id = this.props.params.id;
+      _axios2.default.get('/api/play/' + id).then(function (res) {
+        _this2.setState({ game: res.data[0] });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
-          'h1',
+          'div',
           null,
-          ' Play '
-        ),
-        this.props.children
+          this.state.game.animal
+        )
       );
     }
   }]);
@@ -401,7 +418,7 @@ var Play = function (_React$Component) {
 
 exports.default = Play;
 
-},{"./Answer.jsx":1,"./Ask.jsx":3,"react":262}],7:[function(require,module,exports){
+},{"./Answer.jsx":1,"./Ask.jsx":3,"axios":8,"react":262}],7:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -446,12 +463,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     { path: '/', component: _App2.default },
     _react2.default.createElement(_reactRouter.Route, { path: '/lobby', component: _Lobby2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: '/new', component: _NewGame2.default }),
-    _react2.default.createElement(
-      _reactRouter.Route,
-      { path: '/play', component: _Play2.default },
-      _react2.default.createElement(_reactRouter.Route, { path: '/ask', component: _Ask2.default }),
-      _react2.default.createElement(_reactRouter.Route, { path: '/answer', component: _Answer2.default })
-    )
+    _react2.default.createElement(_reactRouter.Route, { path: '/play/:id', component: _Play2.default })
   )
 ), document.getElementById('root'));
 

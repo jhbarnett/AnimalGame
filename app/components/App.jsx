@@ -25,7 +25,6 @@ class App extends React.Component {
                     <ul className="nav navbar-nav">
                         <li><Link to="/lobby">Lobby</Link></li>
                         <li><Link to="/new">New Game</Link></li>
-                        <li><Link to="/play">Account</Link></li>
                     </ul>
                 </div>
             </div>
