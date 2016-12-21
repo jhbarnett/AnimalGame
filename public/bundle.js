@@ -181,6 +181,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -195,16 +199,56 @@ var Lobby = function (_React$Component) {
   function Lobby(props) {
     _classCallCheck(this, Lobby);
 
-    return _possibleConstructorReturn(this, (Lobby.__proto__ || Object.getPrototypeOf(Lobby)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Lobby.__proto__ || Object.getPrototypeOf(Lobby)).call(this, props));
+
+    _this.state = {
+      games: []
+    };
+    return _this;
   }
 
   _createClass(Lobby, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getGames();
+    }
+  }, {
+    key: 'getGames',
+    value: function getGames() {
+      var _this2 = this;
+
+      _axios2.default.get('/api/openGames').then(function (games) {
+        console.log('pre', games);
+        _this2.setState({ games: games.data });
+        console.log('post', _this2.state.games);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'h1',
+        'div',
         null,
-        ' Lobby '
+        this.state.games.map(function (game) {
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'div',
+              null,
+              ' animal: ',
+              game.animal,
+              ' '
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              ' count: ',
+              game.qCount,
+              ' '
+            )
+          );
+        })
       );
     }
   }]);
@@ -214,7 +258,7 @@ var Lobby = function (_React$Component) {
 
 exports.default = Lobby;
 
-},{"react":262}],5:[function(require,module,exports){
+},{"axios":8,"react":262}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

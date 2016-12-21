@@ -28,12 +28,12 @@ module.exports = {
       player2: null,
       qCount: 0
     }
-    openGames.push(game)
-      console.log('added to open games server side')
+    openGames.unshift(game)
+    console.log('added to open games server side', openGames[0])
     res.status(200).send(game).end()
   },
   getOpenGames: function(req, res) {
-    console.log('got open games server side')
+    console.log('got open games server side', openGames)
     res.status(200).send(openGames).end()
   }
 
