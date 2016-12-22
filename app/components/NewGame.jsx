@@ -6,10 +6,6 @@ class NewGame extends React.Component {
     super(props)
   }
 
-  componentDidMount(){
-
-  }
-
   createNewGame(e){
     e.preventDefault()
     const animal = document.getElementById('animal').value

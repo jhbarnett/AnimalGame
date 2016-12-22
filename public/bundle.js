@@ -12,20 +12,56 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Answer = function Answer(_ref) {
-  var game = _ref.game;
+  var game = _ref.game,
+      submitAnswer = _ref.submitAnswer;
 
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(
-      'button',
+      'div',
       null,
-      'Yes'
+      game.animal
     ),
     _react2.default.createElement(
-      'button',
+      'div',
       null,
-      'No'
+      game.count
+    ),
+    _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return submitAnswer(e);
+            } },
+          'Yes'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return submitAnswer(e);
+            } },
+          'No'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          'button',
+          null,
+          'Other'
+        )
+      )
     )
   );
 };
@@ -161,21 +197,42 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Ask = function Ask(_ref) {
-  var game = _ref.game;
+  var game = _ref.game,
+      submitQuestion = _ref.submitQuestion;
 
   return _react2.default.createElement(
-    'form',
+    'div',
     null,
-    _react2.default.createElement('input', { placeholder: 'Ask something!' }),
     _react2.default.createElement(
-      'button',
+      'div',
       null,
-      'Submit'
+      game.count
+    ),
+    _react2.default.createElement(
+      'form',
+      null,
+      _react2.default.createElement('input', { name: 'question', placeholder: 'Ask something!' }),
+      _react2.default.createElement(
+        'button',
+        { onClick: function onClick(e) {
+            return submitQuestion(e);
+          } },
+        'Submit'
+      )
     )
   );
 };
 
 exports.default = Ask;
+
+// {
+//   game.questions.map((question, i) => 
+//     <div key={i}>
+//       <span>question.Q</span>
+//       <span>question.A</span>
+//     </div>
+//   )
+// }
 
 },{"react":262}],4:[function(require,module,exports){
 'use strict';
@@ -309,9 +366,6 @@ var NewGame = function (_React$Component) {
   }
 
   _createClass(NewGame, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
     key: 'createNewGame',
     value: function createNewGame(e) {
       e.preventDefault();
@@ -401,7 +455,7 @@ var Play = function (_React$Component) {
 
     _this.state = {
       game: [],
-      role: true
+      role: false
     };
     return _this;
   }
@@ -422,6 +476,30 @@ var Play = function (_React$Component) {
       });
     }
   }, {
+    key: 'updateGame',
+    value: function updateGame() {
+      _axios2.default.put('/api/play/' + id, this.state.game);
+      this.props.router.push('/lobby');
+    }
+  }, {
+    key: 'submitAnswer',
+    value: function submitAnswer(e) {
+      e.preventDefault();
+      var answer = e.target.innerHTML;
+      this.state.game.questions[0].A = answer;
+      this.updateGame();
+    }
+  }, {
+    key: 'submitQuestion',
+    value: function submitQuestion(e) {
+      e.preventDefault();
+      var question = document.querySelector('[name=question]');
+      this.state.game.questions.unshift({ Q: question.value, A: null });
+      this.state.game.count = this.state.game.questions.length;
+      question.reset();
+      this.updateGame();
+    }
+  }, {
     key: 'render',
     value: function render() {
       switch (this.state.role) {
@@ -429,13 +507,13 @@ var Play = function (_React$Component) {
           return _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_Ask2.default, { game: this.state.game })
+            _react2.default.createElement(_Ask2.default, { game: this.state.game, submitQuestion: this.submitQuestion.bind(this) })
           );
         case false:
           return _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_Answer2.default, { game: this.state.game })
+            _react2.default.createElement(_Answer2.default, { game: this.state.game, submitAnswer: this.submitAnswer.bind(this) })
           );
         default:
           return _react2.default.createElement(

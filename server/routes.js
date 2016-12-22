@@ -6,7 +6,7 @@ Router.post('/api/newGame', (req, res) => Ctrl.createNewGame(req, res))
 
 Router.get('/api/openGames', (req, res) => Ctrl.getOpenGames(req, res))
 
-Router.put('/api/updateGame/:id', (req, res) => {})
+Router.put('/api/play/:id', (req, res) => Ctrl.updateGame(req, res))
 
 Router.get('/api/play/:id', (req, res) => Ctrl.getSingleGame(req, res))
 

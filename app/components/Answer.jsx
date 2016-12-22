@@ -1,10 +1,15 @@
 import React from 'react'
 
-const Answer = ({ game }) => { 
+const Answer = ({ game, submitAnswer }) => { 
   return (
     <div>
-      <button>Yes</button>
-      <button>No</button>
+      <div>{game.animal}</div>
+      <div>{game.count}</div>
+      <ul>
+        <li><button onClick={(e) => submitAnswer(e)}>Yes</button></li>
+        <li><button onClick={(e) => submitAnswer(e)}>No</button></li>
+        <li><button>Other</button></li>
+      </ul>
     </div>
   )
 }

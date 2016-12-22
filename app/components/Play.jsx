@@ -8,7 +8,7 @@ class Play extends React.Component {
     super(props)
     this.state = {
       game: [],
-      role: true 
+      role: false 
     }
   }
 
@@ -24,18 +24,39 @@ class Play extends React.Component {
     })
   }
 
+  updateGame(){
+    axios.put(`/api/play/${id}`, this.state.game)
+    this.props.router.push('/lobby')
+  }
+
+  submitAnswer(e) {
+    e.preventDefault()
+    const answer = e.target.innerHTML
+    this.state.game.questions[0].A = answer
+    this.updateGame()
+  }
+
+  submitQuestion(e) {
+    e.preventDefault()
+    const question = document.querySelector('[name=question]')
+    this.state.game.questions.unshift({Q: question.value, A: null})
+    this.state.game.count = this.state.game.questions.length
+    question.reset()
+    this.updateGame() 
+  }
+
   render() {
     switch(this.state.role) {
       case true:
         return (
           <div>
-            <Ask game={this.state.game} />
+            <Ask game={this.state.game} submitQuestion={this.submitQuestion.bind(this)} />
           </div>
         )   
       case false:
         return (
           <div>
-            <Answer game={this.state.game} />
+            <Answer game={this.state.game} submitAnswer={this.submitAnswer.bind(this)} />
           </div>
         )  
       default:
