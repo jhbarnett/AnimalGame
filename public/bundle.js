@@ -11,11 +11,22 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Answer = function Answer(props) {
+var Answer = function Answer(_ref) {
+  var game = _ref.game;
+
   return _react2.default.createElement(
-    'h3',
+    'div',
     null,
-    ' Answer '
+    _react2.default.createElement(
+      'button',
+      null,
+      'Yes'
+    ),
+    _react2.default.createElement(
+      'button',
+      null,
+      'No'
+    )
   );
 };
 
@@ -149,11 +160,18 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Ask = function Ask(props) {
+var Ask = function Ask(_ref) {
+  var game = _ref.game;
+
   return _react2.default.createElement(
-    'h3',
+    'form',
     null,
-    ' Ask '
+    _react2.default.createElement('input', { placeholder: 'Ask something!' }),
+    _react2.default.createElement(
+      'button',
+      null,
+      'Submit'
+    )
   );
 };
 
@@ -222,23 +240,27 @@ var Lobby = function (_React$Component) {
         null,
         this.state.games.map(function (game) {
           return _react2.default.createElement(
-            _reactRouter.Link,
-            { to: '/play/' + game.id },
+            'div',
+            { key: game.id },
             _react2.default.createElement(
-              'div',
-              null,
+              _reactRouter.Link,
+              { to: '/play/' + game.id },
               _react2.default.createElement(
-                'span',
+                'div',
                 null,
-                'animal: ',
-                game.animal
-              ),
-              _react2.default.createElement('br', null),
-              _react2.default.createElement(
-                'span',
-                null,
-                game.count,
-                ' of 21'
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'animal: ',
+                  game.animal
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  game.count,
+                  ' of 21'
+                )
               )
             )
           );
@@ -293,9 +315,9 @@ var NewGame = function (_React$Component) {
     key: 'createNewGame',
     value: function createNewGame(e) {
       e.preventDefault();
-      var animal = document.getElementById('anml').value;
+      var animal = document.getElementById('animal').value;
       _axios2.default.post('/api/newGame', { animal: animal });
-      console.log('Created Game with ', animal);
+      this.props.router.push('/lobby');
     }
   }, {
     key: 'render',
@@ -318,7 +340,7 @@ var NewGame = function (_React$Component) {
         _react2.default.createElement(
           'form',
           null,
-          _react2.default.createElement('input', { id: 'anml', type: 'text' }),
+          _react2.default.createElement('input', { id: 'animal', type: 'text' }),
           _react2.default.createElement(
             'button',
             { onClick: function onClick(e) {
@@ -378,7 +400,8 @@ var Play = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Play.__proto__ || Object.getPrototypeOf(Play)).call(this, props));
 
     _this.state = {
-      game: []
+      game: [],
+      role: true
     };
     return _this;
   }
@@ -401,15 +424,30 @@ var Play = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.game.animal
-        )
-      );
+      switch (this.state.role) {
+        case true:
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_Ask2.default, { game: this.state.game })
+          );
+        case false:
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_Answer2.default, { game: this.state.game })
+          );
+        default:
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'h1',
+              null,
+              'GAME OVER'
+            )
+          );
+      }
     }
   }]);
 

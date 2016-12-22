@@ -26,10 +26,12 @@ class Lobby extends React.Component {
       <div>
       {
         this.state.games.map(game => 
-          <Link to={`/play/${game.id}`}>
-            <div><span>animal: {game.animal}</span><br/>
-            <span>{game.count} of 21</span></div>
-          </Link>
+          <div key={game.id}>
+            <Link to={`/play/${game.id}`}>
+              <div><span>animal: {game.animal}</span><br/>
+              <span>{game.count} of 21</span></div>
+            </Link>
+          </div>
         )
       }
       </div>

@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Ask = (props) => { 
+const Ask = ({ game }) => { 
   return (
-    <h3> Ask </h3>
+    <form>
+      <input placeholder='Ask something!'/>
+      <button>Submit</button>
+    </form>
   )
 }
 

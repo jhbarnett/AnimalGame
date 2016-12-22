@@ -7,7 +7,8 @@ class Play extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      game: []
+      game: [],
+      role: true 
     }
   }
 
@@ -24,11 +25,26 @@ class Play extends React.Component {
   }
 
   render() {
-    return (
-      <div>  
-        <div>{this.state.game.animal}</div>
-      </div>  
-    )
+    switch(this.state.role) {
+      case true:
+        return (
+          <div>
+            <Ask game={this.state.game} />
+          </div>
+        )   
+      case false:
+        return (
+          <div>
+            <Answer game={this.state.game} />
+          </div>
+        )  
+      default:
+        return (
+          <div>
+            <h1>GAME OVER</h1>
+          </div>
+        )  
+    }
   }
 }
 

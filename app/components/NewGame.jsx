@@ -12,9 +12,9 @@ class NewGame extends React.Component {
 
   createNewGame(e){
     e.preventDefault()
-    const animal = document.getElementById('anml').value
+    const animal = document.getElementById('animal').value
     axios.post('/api/newGame', { animal: animal })
-    console.log('Created Game with ', animal)
+    this.props.router.push('/lobby');
   }
 
   render() {
@@ -23,8 +23,8 @@ class NewGame extends React.Component {
         <h1> New Game </h1>
         <h3> Choose An Animal: </h3>
         <form>
-          <input id='anml' type='text'/>
-          <button onClick={(e) => this.createNewGame(e)} >START</button>
+          <input id='animal' type='text'/>
+          <button onClick={(e) => this.createNewGame(e)}>START</button>
         </form>
       </div>  
     )

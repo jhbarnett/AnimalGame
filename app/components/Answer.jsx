@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Answer = (props) => { 
+const Answer = ({ game }) => { 
   return (
-    <h3> Answer </h3>
+    <div>
+      <button>Yes</button>
+      <button>No</button>
+    </div>
   )
 }
 
