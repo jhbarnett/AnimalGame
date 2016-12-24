@@ -13,7 +13,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Answer = function Answer(_ref) {
   var game = _ref.game,
-      submitAnswer = _ref.submitAnswer;
+      submitAnswer = _ref.submitAnswer,
+      lastQ = _ref.lastQ;
+
 
   return _react2.default.createElement(
     'div',
@@ -27,6 +29,11 @@ var Answer = function Answer(_ref) {
       'div',
       null,
       game.count
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      lastQ.Q
     ),
     _react2.default.createElement(
       'ul',
@@ -117,64 +124,157 @@ var App = function (_React$Component) {
   function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      player: false
+    };
+    return _this;
   }
 
   _createClass(App, [{
+    key: 'handlePlayer',
+    value: function handlePlayer(e) {
+      e.preventDefault();
+      var player = document.querySelector('[name=player]').value;
+      this.setState({ player: player });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'nav',
-          { className: 'navbar navbar-default' },
-          _react2.default.createElement(
+      var _this2 = this;
+
+      switch (this.state.player) {
+        case "Jason":
+          return _react2.default.createElement(
             'div',
-            { className: 'container-fluid' },
+            null,
             _react2.default.createElement(
-              'div',
-              { className: 'navbar-header' },
+              'nav',
+              { className: 'navbar navbar-default' },
               _react2.default.createElement(
-                _reactRouter.Link,
-                { className: 'navbar-brand', to: '#' },
-                'The Animal Game'
+                'div',
+                { className: 'container-fluid' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'navbar-header' },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { className: 'navbar-brand', to: '#' },
+                    'The Animal Game'
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+                  _react2.default.createElement(
+                    'ul',
+                    { className: 'nav navbar-nav' },
+                    _react2.default.createElement(
+                      'li',
+                      null,
+                      _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/lobby' },
+                        'Lobby'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      null,
+                      _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/new' },
+                        'New Game'
+                      )
+                    )
+                  )
+                )
               )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+              { className: 'container' },
+              this.props.children
+            )
+          );
+        case "Ollie":
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'nav',
+              { className: 'navbar navbar-default' },
               _react2.default.createElement(
-                'ul',
-                { className: 'nav navbar-nav' },
+                'div',
+                { className: 'container-fluid' },
                 _react2.default.createElement(
-                  'li',
-                  null,
+                  'div',
+                  { className: 'navbar-header' },
                   _react2.default.createElement(
                     _reactRouter.Link,
-                    { to: '/lobby' },
-                    'Lobby'
+                    { className: 'navbar-brand', to: '#' },
+                    'The Animal Game'
                   )
                 ),
                 _react2.default.createElement(
-                  'li',
-                  null,
+                  'div',
+                  { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
                   _react2.default.createElement(
-                    _reactRouter.Link,
-                    { to: '/new' },
-                    'New Game'
+                    'ul',
+                    { className: 'nav navbar-nav' },
+                    _react2.default.createElement(
+                      'li',
+                      null,
+                      _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/lobby' },
+                        'Lobby'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      null,
+                      _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: '/new' },
+                        'New Game'
+                      )
+                    )
                   )
                 )
               )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'container' },
+              this.props.children
             )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'container' },
-          this.props.children
-        )
-      );
+          );
+        default:
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'div',
+              null,
+              'Merry Christmas Hot Pocket!'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              'Enter your name below and we can start playing!'
+            ),
+            _react2.default.createElement('input', { name: 'player' }),
+            _react2.default.createElement(
+              'button',
+              { onClick: function onClick(e) {
+                  return _this2.handlePlayer(e);
+                } },
+              'Play!'
+            )
+          );
+      }
     }
   }]);
 
@@ -198,7 +298,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Ask = function Ask(_ref) {
   var game = _ref.game,
-      submitQuestion = _ref.submitQuestion;
+      submitQuestion = _ref.submitQuestion,
+      lastQ = _ref.lastQ;
 
   return _react2.default.createElement(
     'div',
@@ -455,7 +556,7 @@ var Play = function (_React$Component) {
 
     _this.state = {
       game: [],
-      role: false
+      lastQ: {}
     };
     return _this;
   }
@@ -472,13 +573,19 @@ var Play = function (_React$Component) {
 
       var id = this.props.params.id;
       _axios2.default.get('/api/play/' + id).then(function (res) {
-        _this2.setState({ game: res.data[0] });
+        _this2.setState({
+          game: res.data[0],
+          lastQ: res.data[0].questions[0]
+        });
       });
     }
   }, {
     key: 'updateGame',
-    value: function updateGame() {
+    value: function updateGame(id) {
       _axios2.default.put('/api/play/' + id, this.state.game);
+      this.setState({
+        lastQ: this.state.game.questions[0]
+      });
       this.props.router.push('/lobby');
     }
   }, {
@@ -487,6 +594,7 @@ var Play = function (_React$Component) {
       e.preventDefault();
       var answer = e.target.innerHTML;
       this.state.game.questions[0].A = answer;
+      this.state.game.turn = this.state.game.player1;
       this.updateGame();
     }
   }, {
@@ -496,24 +604,24 @@ var Play = function (_React$Component) {
       var question = document.querySelector('[name=question]');
       this.state.game.questions.unshift({ Q: question.value, A: null });
       this.state.game.count = this.state.game.questions.length;
-      question.reset();
-      this.updateGame();
+      this.state.game.turn = this.state.game.player2;
+      this.updateGame(this.state.game.id);
     }
   }, {
     key: 'render',
     value: function render() {
-      switch (this.state.role) {
-        case true:
+      switch (this.state.game.turn) {
+        case this.state.game.player1:
           return _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_Ask2.default, { game: this.state.game, submitQuestion: this.submitQuestion.bind(this) })
+            _react2.default.createElement(_Ask2.default, { game: this.state.game, lastQ: this.state.lastQ, submitQuestion: this.submitQuestion.bind(this) })
           );
-        case false:
+        case this.state.game.player1:
           return _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_Answer2.default, { game: this.state.game, submitAnswer: this.submitAnswer.bind(this) })
+            _react2.default.createElement(_Answer2.default, { game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
           );
         default:
           return _react2.default.createElement(

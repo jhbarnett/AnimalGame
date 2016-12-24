@@ -8,7 +8,7 @@ class Play extends React.Component {
     super(props)
     this.state = {
       game: [],
-      role: false 
+      lastQ: {}
     }
   }
 
@@ -20,12 +20,18 @@ class Play extends React.Component {
     const id = this.props.params.id
     axios.get(`/api/play/${id}`)
     .then(res => {
-      this.setState({ game: res.data[0] })
+      this.setState({
+        game: res.data[0],
+        lastQ: res.data[0].questions[0]
+      })
     })
   }
 
-  updateGame(){
+  updateGame(id){
     axios.put(`/api/play/${id}`, this.state.game)
+    this.setState({
+      lastQ: this.state.game.questions[0]
+    })
     this.props.router.push('/lobby')
   }
 
@@ -33,6 +39,7 @@ class Play extends React.Component {
     e.preventDefault()
     const answer = e.target.innerHTML
     this.state.game.questions[0].A = answer
+    this.state.game.turn = this.state.game.player1
     this.updateGame()
   }
 
@@ -41,22 +48,22 @@ class Play extends React.Component {
     const question = document.querySelector('[name=question]')
     this.state.game.questions.unshift({Q: question.value, A: null})
     this.state.game.count = this.state.game.questions.length
-    question.reset()
-    this.updateGame() 
+    this.state.game.turn = this.state.game.player2
+    this.updateGame(this.state.game.id) 
   }
 
   render() {
-    switch(this.state.role) {
-      case true:
+    switch(this.state.game.turn) {
+      case this.state.game.player1:
         return (
           <div>
-            <Ask game={this.state.game} submitQuestion={this.submitQuestion.bind(this)} />
+            <Ask game={this.state.game} lastQ={this.state.lastQ} submitQuestion={this.submitQuestion.bind(this)} />
           </div>
         )   
-      case false:
+      case this.state.game.player1:
         return (
           <div>
-            <Answer game={this.state.game} submitAnswer={this.submitAnswer.bind(this)} />
+            <Answer game={this.state.game} lastQ={this.state.lastQ} submitAnswer={this.submitAnswer.bind(this)} />
           </div>
         )  
       default:
