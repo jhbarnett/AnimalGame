@@ -127,7 +127,7 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      player: false
+      password: false
     };
     return _this;
   }
@@ -136,125 +136,35 @@ var App = function (_React$Component) {
     key: 'handlePlayer',
     value: function handlePlayer(e) {
       e.preventDefault();
-      var player = document.querySelector('[name=player]').value;
-      this.setState({ player: player });
+      var password = document.querySelector('[name=password]').value;
+      this.setState({ password: password });
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      switch (this.state.player) {
-        case "Jason":
+      switch (this.state.password) {
+        case "analprincess":
           return _react2.default.createElement(
             'div',
-            null,
+            { id: 'navbar' },
             _react2.default.createElement(
-              'nav',
-              { className: 'navbar navbar-default' },
-              _react2.default.createElement(
-                'div',
-                { className: 'container-fluid' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'navbar-header' },
-                  _react2.default.createElement(
-                    _reactRouter.Link,
-                    { className: 'navbar-brand', to: '#' },
-                    'The Animal Game'
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-                  _react2.default.createElement(
-                    'ul',
-                    { className: 'nav navbar-nav' },
-                    _react2.default.createElement(
-                      'li',
-                      null,
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/lobby' },
-                        'Lobby'
-                      )
-                    ),
-                    _react2.default.createElement(
-                      'li',
-                      null,
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/new' },
-                        'New Game'
-                      )
-                    )
-                  )
-                )
-              )
+              _reactRouter.Link,
+              { id: 'nav main', to: '/lobby' },
+              'Princess Ollie\'s Animal Game'
             ),
             _react2.default.createElement(
-              'div',
-              { className: 'container' },
-              this.props.children
-            )
-          );
-        case "Ollie":
-          return _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'nav',
-              { className: 'navbar navbar-default' },
-              _react2.default.createElement(
-                'div',
-                { className: 'container-fluid' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'navbar-header' },
-                  _react2.default.createElement(
-                    _reactRouter.Link,
-                    { className: 'navbar-brand', to: '#' },
-                    'The Animal Game'
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-                  _react2.default.createElement(
-                    'ul',
-                    { className: 'nav navbar-nav' },
-                    _react2.default.createElement(
-                      'li',
-                      null,
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/lobby' },
-                        'Lobby'
-                      )
-                    ),
-                    _react2.default.createElement(
-                      'li',
-                      null,
-                      _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/new' },
-                        'New Game'
-                      )
-                    )
-                  )
-                )
-              )
+              _reactRouter.Link,
+              { id: 'nav newgame', to: '/new' },
+              'New Game'
             ),
-            _react2.default.createElement(
-              'div',
-              { className: 'container' },
-              this.props.children
-            )
+            this.props.children
           );
         default:
           return _react2.default.createElement(
             'div',
-            null,
+            { className: 'welcome' },
             _react2.default.createElement(
               'div',
               null,
@@ -263,15 +173,15 @@ var App = function (_React$Component) {
             _react2.default.createElement(
               'div',
               null,
-              'Enter your name below and we can start playing!'
+              'Enter our wifi password and we can start playing!'
             ),
-            _react2.default.createElement('input', { name: 'player' }),
+            _react2.default.createElement('input', { type: 'password', name: 'password' }),
             _react2.default.createElement(
               'button',
               { onClick: function onClick(e) {
                   return _this2.handlePlayer(e);
                 } },
-              'Play!'
+              'Play'
             )
           );
       }
@@ -490,13 +400,13 @@ var NewGame = function (_React$Component) {
           ' New Game '
         ),
         _react2.default.createElement(
-          'h3',
-          null,
-          ' Choose An Animal: '
-        ),
-        _react2.default.createElement(
           'form',
           null,
+          _react2.default.createElement(
+            'h3',
+            null,
+            ' Choose An Animal: '
+          ),
           _react2.default.createElement('input', { name: 'animal', type: 'text' }),
           _react2.default.createElement(
             'h3',

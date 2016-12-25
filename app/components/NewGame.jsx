@@ -19,12 +19,12 @@ class NewGame extends React.Component {
     return (
       <div>  
         <h1> New Game </h1>
-        <h3> Choose An Animal: </h3>
         <form>
+          <h3> Choose An Animal: </h3>
           <input name='animal' type='text'/>
-        <h3> Player 1: </h3>
+          <h3> Player 1: </h3>
           <input name='player1' type='text'/>
-        <h3> Player 2: </h3>
+          <h3> Player 2: </h3>
           <input name='player2' type='text'/>
           <button onClick={(e) => this.createNewGame(e)}>START</button>
         </form>
