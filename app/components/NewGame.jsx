@@ -8,8 +8,10 @@ class NewGame extends React.Component {
 
   createNewGame(e){
     e.preventDefault()
-    const animal = document.getElementById('animal').value
-    axios.post('/api/newGame', { animal: animal })
+    const animal = document.querySelector('[name=animal]').value
+    const player1 = document.querySelector('[name=player1]').value
+    const player2 = document.querySelector('[name=player2]').value
+    axios.post('/api/newGame', { animal, player1, player2 })
     this.props.router.push('/lobby');
   }
 
@@ -19,7 +21,11 @@ class NewGame extends React.Component {
         <h1> New Game </h1>
         <h3> Choose An Animal: </h3>
         <form>
-          <input id='animal' type='text'/>
+          <input name='animal' type='text'/>
+        <h3> Player 1: </h3>
+          <input name='player1' type='text'/>
+        <h3> Player 2: </h3>
+          <input name='player2' type='text'/>
           <button onClick={(e) => this.createNewGame(e)}>START</button>
         </form>
       </div>  

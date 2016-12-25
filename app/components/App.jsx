@@ -22,7 +22,6 @@ class App extends React.Component {
     this.setState({ player })
   }
 
-
   render() {
     switch (this.state.player){
       case "Jason":

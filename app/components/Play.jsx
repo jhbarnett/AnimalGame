@@ -39,7 +39,7 @@ class Play extends React.Component {
     e.preventDefault()
     const answer = e.target.innerHTML
     this.state.game.questions[0].A = answer
-    this.state.game.turn = this.state.game.player1
+    this.state.game.turn = this.state.game.player2
     this.updateGame()
   }
 
@@ -48,28 +48,28 @@ class Play extends React.Component {
     const question = document.querySelector('[name=question]')
     this.state.game.questions.unshift({Q: question.value, A: null})
     this.state.game.count = this.state.game.questions.length
-    this.state.game.turn = this.state.game.player2
+    this.state.game.turn = this.state.game.player1
     this.updateGame(this.state.game.id) 
   }
 
   render() {
-    switch(this.state.game.turn) {
-      case this.state.game.player1:
-        return (
-          <div>
-            <Ask game={this.state.game} lastQ={this.state.lastQ} submitQuestion={this.submitQuestion.bind(this)} />
-          </div>
-        )   
+    switch (this.state.game.turn) {
       case this.state.game.player1:
         return (
           <div>
             <Answer game={this.state.game} lastQ={this.state.lastQ} submitAnswer={this.submitAnswer.bind(this)} />
           </div>
         )  
+      case this.state.game.player2:
+        return (
+          <div>
+            <Ask game={this.state.game} lastQ={this.state.lastQ} submitQuestion={this.submitQuestion.bind(this)} />
+          </div>
+        )   
       default:
         return (
           <div>
-            <h1>GAME OVER</h1>
+            <h1>Sorry, it's not your turn!</h1>
           </div>
         )  
     }

@@ -10,11 +10,11 @@ module.exports = {
     const game = {
       id,
       animal: req.body.animal,
-      player1: null,
-      player2: null,
+      player1: req.body.player1,
+      player2: req.body.player2,
       questions: [],
       count: 0,
-      turn: null,
+      turn: req.body.player2,
       complete: false
     }
 

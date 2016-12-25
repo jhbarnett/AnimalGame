@@ -470,8 +470,10 @@ var NewGame = function (_React$Component) {
     key: 'createNewGame',
     value: function createNewGame(e) {
       e.preventDefault();
-      var animal = document.getElementById('animal').value;
-      _axios2.default.post('/api/newGame', { animal: animal });
+      var animal = document.querySelector('[name=animal]').value;
+      var player1 = document.querySelector('[name=player1]').value;
+      var player2 = document.querySelector('[name=player2]').value;
+      _axios2.default.post('/api/newGame', { animal: animal, player1: player1, player2: player2 });
       this.props.router.push('/lobby');
     }
   }, {
@@ -495,7 +497,19 @@ var NewGame = function (_React$Component) {
         _react2.default.createElement(
           'form',
           null,
-          _react2.default.createElement('input', { id: 'animal', type: 'text' }),
+          _react2.default.createElement('input', { name: 'animal', type: 'text' }),
+          _react2.default.createElement(
+            'h3',
+            null,
+            ' Player 1: '
+          ),
+          _react2.default.createElement('input', { name: 'player1', type: 'text' }),
+          _react2.default.createElement(
+            'h3',
+            null,
+            ' Player 2: '
+          ),
+          _react2.default.createElement('input', { name: 'player2', type: 'text' }),
           _react2.default.createElement(
             'button',
             { onClick: function onClick(e) {
@@ -594,7 +608,7 @@ var Play = function (_React$Component) {
       e.preventDefault();
       var answer = e.target.innerHTML;
       this.state.game.questions[0].A = answer;
-      this.state.game.turn = this.state.game.player1;
+      this.state.game.turn = this.state.game.player2;
       this.updateGame();
     }
   }, {
@@ -604,7 +618,7 @@ var Play = function (_React$Component) {
       var question = document.querySelector('[name=question]');
       this.state.game.questions.unshift({ Q: question.value, A: null });
       this.state.game.count = this.state.game.questions.length;
-      this.state.game.turn = this.state.game.player2;
+      this.state.game.turn = this.state.game.player1;
       this.updateGame(this.state.game.id);
     }
   }, {
@@ -615,13 +629,13 @@ var Play = function (_React$Component) {
           return _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_Ask2.default, { game: this.state.game, lastQ: this.state.lastQ, submitQuestion: this.submitQuestion.bind(this) })
+            _react2.default.createElement(_Answer2.default, { game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
           );
-        case this.state.game.player1:
+        case this.state.game.player2:
           return _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_Answer2.default, { game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
+            _react2.default.createElement(_Ask2.default, { game: this.state.game, lastQ: this.state.lastQ, submitQuestion: this.submitQuestion.bind(this) })
           );
         default:
           return _react2.default.createElement(
@@ -630,7 +644,7 @@ var Play = function (_React$Component) {
             _react2.default.createElement(
               'h1',
               null,
-              'GAME OVER'
+              'Sorry, it\'s not your turn!'
             )
           );
       }

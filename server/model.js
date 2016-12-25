@@ -11,6 +11,7 @@ const gameSchema = new Schema({
   player2: String,
   questions: [{Q: String, A: String}],
   count: Number,
+  turn: String,
   complete: Boolean
 })
 
