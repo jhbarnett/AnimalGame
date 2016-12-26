@@ -2,18 +2,30 @@ import React from 'react'
 import Answer from './Answer.jsx'
 import Ask from './Ask.jsx'
 import axios from 'axios'
+import { currentUser } from './App.jsx'
 
 class Play extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      game: [],
-      lastQ: {}
+      game: {},
+      lastQ: {},
+      currentUser: ''
     }
   }
 
   componentDidMount(){
     this.getSingleGame()
+    this.confirmUser()
+  }
+
+  confirmUser(){
+    axios.get('/api/user')
+    .then(res => {
+      this.setState({
+        currentUser: res.data
+      })
+    })
   }
 
   getSingleGame(){
@@ -53,23 +65,23 @@ class Play extends React.Component {
   }
 
   render() {
-    switch (this.state.game.turn) {
-      case this.state.game.player1:
-        return (
-          <div>
-            <Answer game={this.state.game} lastQ={this.state.lastQ} submitAnswer={this.submitAnswer.bind(this)} />
-          </div>
-        )  
+    switch (this.state.currentUser) {
       case this.state.game.player2:
         return (
-          <div>
+          <div className='play'>
             <Ask game={this.state.game} lastQ={this.state.lastQ} submitQuestion={this.submitQuestion.bind(this)} />
           </div>
         )   
+      case this.state.game.player1:
+        return (
+          <div className='play'>
+            <Answer game={this.state.game} lastQ={this.state.lastQ} submitAnswer={this.submitAnswer.bind(this)} />
+          </div>
+        )  
       default:
         return (
-          <div>
-            <h1>Sorry, it's not your turn!</h1>
+          <div className='play'>
+            <h1>Sorry, it's not your turn.</h1>
           </div>
         )  
     }

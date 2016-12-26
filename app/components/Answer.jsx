@@ -1,17 +1,17 @@
 import React from 'react'
 
 const Answer = ({ game, submitAnswer, lastQ }) => { 
-
+  console.log('This game:', game)
   return (
     <div>
-      <div>{game.animal}</div>
-      <div>{game.count}</div>
-      <div>{lastQ.Q}</div>
-      <ul>
-        <li><button onClick={(e) => submitAnswer(e)}>Yes</button></li>
-        <li><button onClick={(e) => submitAnswer(e)}>No</button></li>
-        <li><button>Other</button></li>
-      </ul>
+      <div className='currentAnimal'>{game.animal}</div>
+      <div className='gameCount'>{game.count}</div>
+      <div className='lastQ'>{lastQ.Q}</div>
+      <div>
+        <button onClick={(e) => submitAnswer(e)}>Yes</button>
+        <button onClick={(e) => submitAnswer(e)}>No</button>
+        <button>Other</button>
+      </div>
     </div>
   )
 }

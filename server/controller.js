@@ -2,6 +2,8 @@ const { Game } = require('./model')
 const http = require('http')
 const uuid = require('uuid')
 
+let currentUser = ''
+
 module.exports = {
 
   createNewGame: (req, res) => {
@@ -12,7 +14,7 @@ module.exports = {
       animal: req.body.animal,
       player1: req.body.player1,
       player2: req.body.player2,
-      questions: [],
+      questions: [{A: '', Q: ''}],
       count: 0,
       turn: req.body.player2,
       complete: false
@@ -32,7 +34,6 @@ module.exports = {
   },
 
   updateGame: (req, res) => {
-    console.log(req.body)
     const game = req.body
     Game.findOneAndUpdate({id: game.id}, game)
     .then(game => res.status(200).send(game).end())
@@ -43,5 +44,14 @@ module.exports = {
     .then(game => 
       res.status(200).send(game).end())
     .catch(err => console.log(err))
+  },
+
+  registerUser: (req, res) => {
+    currentUser = req.body.user
+    res.status(200).end()
+  },
+
+  confirmUser: (req, res) => {
+    res.status(200).send(currentUser).end()
   }
 }

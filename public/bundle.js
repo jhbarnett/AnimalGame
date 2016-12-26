@@ -16,58 +16,46 @@ var Answer = function Answer(_ref) {
       submitAnswer = _ref.submitAnswer,
       lastQ = _ref.lastQ;
 
-
+  console.log('This game:', game);
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'currentAnimal' },
       game.animal
     ),
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'gameCount' },
       game.count
     ),
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'lastQ' },
       lastQ.Q
     ),
     _react2.default.createElement(
-      'ul',
+      'div',
       null,
       _react2.default.createElement(
-        'li',
-        null,
-        _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return submitAnswer(e);
-            } },
-          'Yes'
-        )
+        'button',
+        { onClick: function onClick(e) {
+            return submitAnswer(e);
+          } },
+        'Yes'
       ),
       _react2.default.createElement(
-        'li',
-        null,
-        _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return submitAnswer(e);
-            } },
-          'No'
-        )
+        'button',
+        { onClick: function onClick(e) {
+            return submitAnswer(e);
+          } },
+        'No'
       ),
       _react2.default.createElement(
-        'li',
+        'button',
         null,
-        _react2.default.createElement(
-          'button',
-          null,
-          'Other'
-        )
+        'Other'
       )
     )
   );
@@ -89,6 +77,10 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _Lobby = require('./Lobby.jsx');
 
@@ -127,7 +119,7 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      password: false
+      currentUser: ''
     };
     return _this;
   }
@@ -135,17 +127,37 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'handlePlayer',
     value: function handlePlayer(e) {
+      var _this2 = this;
+
       e.preventDefault();
-      var password = document.querySelector('[name=password]').value;
-      this.setState({ password: password });
+      var currentUser = document.querySelector('[name=currentUser]').value;
+      _axios2.default.post('/api/user', { user: currentUser }).then(function (res) {
+        return _this2.setState({ currentUser: currentUser });
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      switch (this.state.password) {
-        case "analprincess":
+      switch (this.state.currentUser) {
+        case "Ollie":
+          return _react2.default.createElement(
+            'div',
+            { id: 'navbar' },
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { id: 'nav main', to: '/lobby' },
+              'Princess Ollie\'s Animal Game'
+            ),
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { id: 'nav newgame', to: '/new' },
+              'New Game'
+            ),
+            this.props.children
+          );
+        case "Jason":
           return _react2.default.createElement(
             'div',
             { id: 'navbar' },
@@ -173,13 +185,13 @@ var App = function (_React$Component) {
             _react2.default.createElement(
               'div',
               null,
-              'Enter our wifi password and we can start playing!'
+              'Enter your nickname to get started!'
             ),
-            _react2.default.createElement('input', { type: 'password', name: 'password' }),
+            _react2.default.createElement('input', { type: 'currentUser', name: 'currentUser' }),
             _react2.default.createElement(
               'button',
               { onClick: function onClick(e) {
-                  return _this2.handlePlayer(e);
+                  return _this3.handlePlayer(e);
                 } },
               'Play'
             )
@@ -193,7 +205,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"./Answer.jsx":1,"./Ask.jsx":3,"./Lobby.jsx":4,"./NewGame.jsx":5,"./Play.jsx":6,"react":262,"react-router":231}],3:[function(require,module,exports){
+},{"./Answer.jsx":1,"./Ask.jsx":3,"./Lobby.jsx":4,"./NewGame.jsx":5,"./Play.jsx":6,"axios":8,"react":262,"react-router":231}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -216,12 +228,27 @@ var Ask = function Ask(_ref) {
     null,
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'gameCount' },
       game.count
     ),
     _react2.default.createElement(
+      'div',
+      { className: 'lastQ' },
+      _react2.default.createElement(
+        'span',
+        null,
+        lastQ.Q,
+        '  '
+      ),
+      _react2.default.createElement(
+        'span',
+        null,
+        lastQ.A
+      )
+    ),
+    _react2.default.createElement(
       'form',
-      null,
+      { className: 'askForm' },
       _react2.default.createElement('input', { name: 'question', placeholder: 'Ask something!' }),
       _react2.default.createElement(
         'button',
@@ -235,15 +262,6 @@ var Ask = function Ask(_ref) {
 };
 
 exports.default = Ask;
-
-// {
-//   game.questions.map((question, i) => 
-//     <div key={i}>
-//       <span>question.Q</span>
-//       <span>question.A</span>
-//     </div>
-//   )
-// }
 
 },{"react":262}],4:[function(require,module,exports){
 'use strict';
@@ -309,7 +327,7 @@ var Lobby = function (_React$Component) {
         this.state.games.map(function (game) {
           return _react2.default.createElement(
             'div',
-            { key: game.id },
+            { className: 'eachGame', key: game.id },
             _react2.default.createElement(
               _reactRouter.Link,
               { to: '/play/' + game.id },
@@ -462,6 +480,8 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _App = require('./App.jsx');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -479,8 +499,9 @@ var Play = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Play.__proto__ || Object.getPrototypeOf(Play)).call(this, props));
 
     _this.state = {
-      game: [],
-      lastQ: {}
+      game: {},
+      lastQ: {},
+      currentUser: ''
     };
     return _this;
   }
@@ -489,15 +510,27 @@ var Play = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.getSingleGame();
+      this.confirmUser();
+    }
+  }, {
+    key: 'confirmUser',
+    value: function confirmUser() {
+      var _this2 = this;
+
+      _axios2.default.get('/api/user').then(function (res) {
+        _this2.setState({
+          currentUser: res.data
+        });
+      });
     }
   }, {
     key: 'getSingleGame',
     value: function getSingleGame() {
-      var _this2 = this;
+      var _this3 = this;
 
       var id = this.props.params.id;
       _axios2.default.get('/api/play/' + id).then(function (res) {
-        _this2.setState({
+        _this3.setState({
           game: res.data[0],
           lastQ: res.data[0].questions[0]
         });
@@ -534,27 +567,27 @@ var Play = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      switch (this.state.game.turn) {
-        case this.state.game.player1:
-          return _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(_Answer2.default, { game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
-          );
+      switch (this.state.currentUser) {
         case this.state.game.player2:
           return _react2.default.createElement(
             'div',
-            null,
+            { className: 'play' },
             _react2.default.createElement(_Ask2.default, { game: this.state.game, lastQ: this.state.lastQ, submitQuestion: this.submitQuestion.bind(this) })
+          );
+        case this.state.game.player1:
+          return _react2.default.createElement(
+            'div',
+            { className: 'play' },
+            _react2.default.createElement(_Answer2.default, { game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
           );
         default:
           return _react2.default.createElement(
             'div',
-            null,
+            { className: 'play' },
             _react2.default.createElement(
               'h1',
               null,
-              'Sorry, it\'s not your turn!'
+              'Sorry, it\'s not your turn.'
             )
           );
       }
@@ -566,7 +599,7 @@ var Play = function (_React$Component) {
 
 exports.default = Play;
 
-},{"./Answer.jsx":1,"./Ask.jsx":3,"axios":8,"react":262}],7:[function(require,module,exports){
+},{"./Answer.jsx":1,"./App.jsx":2,"./Ask.jsx":3,"axios":8,"react":262}],7:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
-
+import axios from 'axios'
 import Lobby from './Lobby.jsx'
 import NewGame from './NewGame.jsx'
 import Play from './Play.jsx'
@@ -11,20 +11,21 @@ import Answer from './Answer.jsx'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = ({
-      password: false
-    })
+    this.state = {
+      currentUser: ''
+    }
   }
 
   handlePlayer(e){
     e.preventDefault()
-    const password = document.querySelector('[name=password]').value
-    this.setState({ password })
+    const currentUser = document.querySelector('[name=currentUser]').value
+    axios.post(`/api/user`, {user: currentUser})
+    .then(res => this.setState({ currentUser }))
   }
 
   render() {
-    switch (this.state.password){
-      case "analprincess":
+    switch (this.state.currentUser){
+      case "Ollie":
         return (
           <div id='navbar'>
             <Link id="nav main" to="/lobby">Princess Ollie's Animal Game</Link>
@@ -32,12 +33,20 @@ class App extends React.Component {
             {this.props.children}
           </div>   
         )
+      case "Jason":
+        return (
+          <div id='navbar'>
+            <Link id="nav main" to="/lobby">Princess Ollie's Animal Game</Link>
+            <Link id="nav newgame" to="/new">New Game</Link>  
+            {this.props.children}
+          </div>   
+        )  
       default:
         return (
           <div className="welcome">
             <div>Merry Christmas Hot Pocket!</div>
-            <div>Enter our wifi password and we can start playing!</div>
-            <input type='password' name='password'/>
+            <div>Enter your nickname to get started!</div>
+            <input type='currentUser' name='currentUser'/>
             <button onClick={(e) => this.handlePlayer(e)}>Play</button>
           </div>
         )

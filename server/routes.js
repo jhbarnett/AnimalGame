@@ -10,4 +10,8 @@ Router.put('/api/play/:id', (req, res) => Ctrl.updateGame(req, res))
 
 Router.get('/api/play/:id', (req, res) => Ctrl.getSingleGame(req, res))
 
+Router.post('/api/user', (req, res) => Ctrl.registerUser(req, res))
+
+Router.get('/api/user', (req, res) => Ctrl.confirmUser(req, res))
+
 module.exports = Router
