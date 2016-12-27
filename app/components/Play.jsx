@@ -59,23 +59,23 @@ class Play extends React.Component {
     e.preventDefault()
     const question = document.querySelector('[name=question]')
     this.state.game.questions.unshift({Q: question.value, A: null})
-    this.state.game.count = this.state.game.questions.length
+    this.state.game.count = this.state.game.questions.length - 1
     this.state.game.turn = this.state.game.player1
     this.updateGame(this.state.game.id) 
   }
 
   render() {
     switch (this.state.currentUser) {
-      case this.state.game.player2:
+      case (this.state.game.player2):
         return (
           <div className='play'>
-            <Ask game={this.state.game} lastQ={this.state.lastQ} submitQuestion={this.submitQuestion.bind(this)} />
+            <Ask currentUser={this.state.currentUser} game={this.state.game} lastQ={this.state.lastQ} submitQuestion={this.submitQuestion.bind(this)} />
           </div>
         )   
-      case this.state.game.player1:
+      case (this.state.game.player1):
         return (
           <div className='play'>
-            <Answer game={this.state.game} lastQ={this.state.lastQ} submitAnswer={this.submitAnswer.bind(this)} />
+            <Answer currentUser={this.state.currentUser} game={this.state.game} lastQ={this.state.lastQ} submitAnswer={this.submitAnswer.bind(this)} />
           </div>
         )  
       default:

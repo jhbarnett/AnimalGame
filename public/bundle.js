@@ -12,53 +12,62 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Answer = function Answer(_ref) {
-  var game = _ref.game,
+  var currentUser = _ref.currentUser,
+      game = _ref.game,
       submitAnswer = _ref.submitAnswer,
       lastQ = _ref.lastQ;
 
-  console.log('This game:', game);
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'div',
-      { className: 'currentAnimal' },
-      game.animal
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'gameCount' },
-      game.count
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'lastQ' },
-      lastQ.Q
-    ),
-    _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
-        'button',
-        { onClick: function onClick(e) {
-            return submitAnswer(e);
-          } },
-        'Yes'
-      ),
-      _react2.default.createElement(
-        'button',
-        { onClick: function onClick(e) {
-            return submitAnswer(e);
-          } },
-        'No'
-      ),
-      _react2.default.createElement(
-        'button',
+  switch (game.turn) {
+    case currentUser:
+      return _react2.default.createElement(
+        'div',
         null,
-        'Other'
-      )
-    )
-  );
+        _react2.default.createElement(
+          'div',
+          { className: 'currentAnimal' },
+          game.animal
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'gameCount' },
+          game.count
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'lastQ' },
+          lastQ.Q
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick(e) {
+                return submitAnswer(e);
+              } },
+            'Yes'
+          ),
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick(e) {
+                return submitAnswer(e);
+              } },
+            'No'
+          ),
+          _react2.default.createElement(
+            'button',
+            null,
+            'Other'
+          )
+        )
+      );
+    default:
+      return _react2.default.createElement(
+        'h1',
+        null,
+        'Sorry, it\'s not your turn.'
+      );
+  }
 };
 
 exports.default = Answer;
@@ -142,21 +151,6 @@ var App = function (_React$Component) {
 
       switch (this.state.currentUser) {
         case "Ollie":
-          return _react2.default.createElement(
-            'div',
-            { id: 'navbar' },
-            _react2.default.createElement(
-              _reactRouter.Link,
-              { id: 'nav main', to: '/lobby' },
-              'Princess Ollie\'s Animal Game'
-            ),
-            _react2.default.createElement(
-              _reactRouter.Link,
-              { id: 'nav newgame', to: '/new' },
-              'New Game'
-            ),
-            this.props.children
-          );
         case "Jason":
           return _react2.default.createElement(
             'div',
@@ -219,46 +213,56 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Ask = function Ask(_ref) {
-  var game = _ref.game,
+  var currentUser = _ref.currentUser,
+      game = _ref.game,
       submitQuestion = _ref.submitQuestion,
       lastQ = _ref.lastQ;
 
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'div',
-      { className: 'gameCount' },
-      game.count
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'lastQ' },
-      _react2.default.createElement(
-        'span',
+  switch (game.turn) {
+    case currentUser:
+      return _react2.default.createElement(
+        'div',
         null,
-        lastQ.Q,
-        '  '
-      ),
-      _react2.default.createElement(
-        'span',
+        _react2.default.createElement(
+          'div',
+          { className: 'gameCount' },
+          game.count
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'lastQ' },
+          _react2.default.createElement(
+            'span',
+            null,
+            lastQ.Q,
+            '  '
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            lastQ.A
+          )
+        ),
+        _react2.default.createElement(
+          'form',
+          { className: 'askForm' },
+          _react2.default.createElement('input', { name: 'question', placeholder: 'Ask something!' }),
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick(e) {
+                return submitQuestion(e);
+              } },
+            'Submit'
+          )
+        )
+      );
+    default:
+      return _react2.default.createElement(
+        'h1',
         null,
-        lastQ.A
-      )
-    ),
-    _react2.default.createElement(
-      'form',
-      { className: 'askForm' },
-      _react2.default.createElement('input', { name: 'question', placeholder: 'Ask something!' }),
-      _react2.default.createElement(
-        'button',
-        { onClick: function onClick(e) {
-            return submitQuestion(e);
-          } },
-        'Submit'
-      )
-    )
-  );
+        'Sorry, it\'s not your turn.'
+      );
+  }
 };
 
 exports.default = Ask;
@@ -560,7 +564,7 @@ var Play = function (_React$Component) {
       e.preventDefault();
       var question = document.querySelector('[name=question]');
       this.state.game.questions.unshift({ Q: question.value, A: null });
-      this.state.game.count = this.state.game.questions.length;
+      this.state.game.count = this.state.game.questions.length - 1;
       this.state.game.turn = this.state.game.player1;
       this.updateGame(this.state.game.id);
     }
@@ -572,13 +576,13 @@ var Play = function (_React$Component) {
           return _react2.default.createElement(
             'div',
             { className: 'play' },
-            _react2.default.createElement(_Ask2.default, { game: this.state.game, lastQ: this.state.lastQ, submitQuestion: this.submitQuestion.bind(this) })
+            _react2.default.createElement(_Ask2.default, { currentUser: this.state.currentUser, game: this.state.game, lastQ: this.state.lastQ, submitQuestion: this.submitQuestion.bind(this) })
           );
         case this.state.game.player1:
           return _react2.default.createElement(
             'div',
             { className: 'play' },
-            _react2.default.createElement(_Answer2.default, { game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
+            _react2.default.createElement(_Answer2.default, { currentUser: this.state.currentUser, game: this.state.game, lastQ: this.state.lastQ, submitAnswer: this.submitAnswer.bind(this) })
           );
         default:
           return _react2.default.createElement(

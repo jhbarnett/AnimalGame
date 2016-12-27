@@ -26,13 +26,6 @@ class App extends React.Component {
   render() {
     switch (this.state.currentUser){
       case "Ollie":
-        return (
-          <div id='navbar'>
-            <Link id="nav main" to="/lobby">Princess Ollie's Animal Game</Link>
-            <Link id="nav newgame" to="/new">New Game</Link>  
-            {this.props.children}
-          </div>   
-        )
       case "Jason":
         return (
           <div id='navbar'>
