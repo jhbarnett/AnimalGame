@@ -3,6 +3,7 @@ const Express = require('express')
 const Path = require('path')
 const BodyParser = require('body-parser')
 const App = Express()
+var HTTP = require('http').Server(App)
 const Routes = require('./routes')
 const { DB } = require('./model')
 
@@ -15,6 +16,6 @@ App.use('/', Routes)
 
 const port = process.env.PORT || 8080
 
-const server = App.listen(port, () => {
+const server = HTTP.listen(port, () => {
   console.log(`Listening on port ${port}...`)
 })
