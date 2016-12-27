@@ -244,7 +244,7 @@ var Ask = function Ask(_ref) {
             { onClick: function onClick(e) {
                 return submitQuestion(e);
               } },
-            'Submit'
+            'Ask'
           )
         )
       );
@@ -397,7 +397,7 @@ var NewGame = function (_React$Component) {
       e.preventDefault();
       var animal = document.querySelector('[name=animal]').value;
       var player2 = document.querySelector('[name=player2]').value;
-      var player1 = guesserr === 'Jason' ? 'Ollie' : 'Jason';
+      var player1 = player2 === 'Jason' ? 'Ollie' : 'Jason';
       _axios2.default.post('/api/newGame', { animal: animal, player1: player1, player2: player2 });
       this.props.router.push('/lobby');
     }
@@ -422,12 +422,6 @@ var NewGame = function (_React$Component) {
             'h3',
             null,
             'Who Guesses? '
-          ),
-          _react2.default.createElement('input', { name: 'player1', type: 'text' }),
-          _react2.default.createElement(
-            'h3',
-            null,
-            'Who Answers?'
           ),
           _react2.default.createElement('input', { name: 'player2', type: 'text' })
         ),
