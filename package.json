@@ -1,4 +1,11 @@
 {
+  "name": "Ollie's Animal Game",
+  "version": "1.0.0",
+  "repository": "github.com/jhbarnett/AnimalGame",
+  "author": "Jason Barnett jhb.task@gmail.com",
+  "engines": {
+    "node": "6.6.0"
+  },  
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "browserify -t [ babelify --presets [ react ] ] app/index.js -o public/bundle.js"
