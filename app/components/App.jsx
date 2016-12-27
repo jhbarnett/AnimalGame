@@ -29,8 +29,8 @@ class App extends React.Component {
       case "Jason":
         return (
           <div id='navbar'>
-            <Link id="nav main" to="/lobby">Princess Ollie's Animal Game</Link>
-            <Link id="nav newgame" to="/new">New Game</Link>  
+            <Link className='nav' id="main" to="/lobby">Princess Ollie's Animal Game</Link>
+            <br></br><Link className='nav' id="new" to="/new">+</Link>  
             {this.props.children}
           </div>   
         )  
@@ -39,7 +39,7 @@ class App extends React.Component {
           <div className="welcome">
             <div>Merry Christmas Hot Pocket!</div>
             <div>Enter your nickname to get started!</div>
-            <input type='currentUser' name='currentUser'/>
+            <input type='text' name='currentUser'/>
             <button onClick={(e) => this.handlePlayer(e)}>Play</button>
           </div>
         )

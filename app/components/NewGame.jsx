@@ -17,7 +17,7 @@ class NewGame extends React.Component {
 
   render() {
     return (
-      <div>  
+      <div className='newGame'>  
         <h1> New Game </h1>
         <form>
           <h3> Choose An Animal: </h3>
@@ -26,7 +26,7 @@ class NewGame extends React.Component {
           <input name='player1' type='text'/>
           <h3> Player 2: </h3>
           <input name='player2' type='text'/>
-          <button onClick={(e) => this.createNewGame(e)}>START</button>
+          <button id='start' onClick={(e) => this.createNewGame(e)}>START</button>
         </form>
       </div>  
     )

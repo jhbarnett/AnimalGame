@@ -157,13 +157,14 @@ var App = function (_React$Component) {
             { id: 'navbar' },
             _react2.default.createElement(
               _reactRouter.Link,
-              { id: 'nav main', to: '/lobby' },
+              { className: 'nav', id: 'main', to: '/lobby' },
               'Princess Ollie\'s Animal Game'
             ),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
               _reactRouter.Link,
-              { id: 'nav newgame', to: '/new' },
-              'New Game'
+              { className: 'nav', id: 'new', to: '/new' },
+              '+'
             ),
             this.props.children
           );
@@ -181,7 +182,7 @@ var App = function (_React$Component) {
               null,
               'Enter your nickname to get started!'
             ),
-            _react2.default.createElement('input', { type: 'currentUser', name: 'currentUser' }),
+            _react2.default.createElement('input', { type: 'text', name: 'currentUser' }),
             _react2.default.createElement(
               'button',
               { onClick: function onClick(e) {
@@ -415,7 +416,7 @@ var NewGame = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'newGame' },
         _react2.default.createElement(
           'h1',
           null,
@@ -444,7 +445,7 @@ var NewGame = function (_React$Component) {
           _react2.default.createElement('input', { name: 'player2', type: 'text' }),
           _react2.default.createElement(
             'button',
-            { onClick: function onClick(e) {
+            { id: 'start', onClick: function onClick(e) {
                 return _this2.createNewGame(e);
               } },
             'START'
