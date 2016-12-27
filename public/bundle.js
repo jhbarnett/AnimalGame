@@ -158,9 +158,8 @@ var App = function (_React$Component) {
             _react2.default.createElement(
               _reactRouter.Link,
               { className: 'nav', id: 'main', to: '/lobby' },
-              'Princess Ollie\'s Animal Game'
+              'Ollie\'s Animal Game'
             ),
-            _react2.default.createElement('br', null),
             _react2.default.createElement(
               _reactRouter.Link,
               { className: 'nav', id: 'new', to: '/new' },
@@ -342,8 +341,9 @@ var Lobby = function (_React$Component) {
                 _react2.default.createElement(
                   'span',
                   null,
-                  'animal: ',
-                  game.animal
+                  game.player2,
+                  ' vs. ',
+                  game.player1
                 ),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
@@ -404,8 +404,8 @@ var NewGame = function (_React$Component) {
     value: function createNewGame(e) {
       e.preventDefault();
       var animal = document.querySelector('[name=animal]').value;
-      var player1 = document.querySelector('[name=player1]').value;
       var player2 = document.querySelector('[name=player2]').value;
+      var player1 = guesserr === 'Jason' ? 'Ollie' : 'Jason';
       _axios2.default.post('/api/newGame', { animal: animal, player1: player1, player2: player2 });
       this.props.router.push('/lobby');
     }
@@ -418,38 +418,33 @@ var NewGame = function (_React$Component) {
         'div',
         { className: 'newGame' },
         _react2.default.createElement(
-          'h1',
-          null,
-          ' New Game '
-        ),
-        _react2.default.createElement(
           'form',
           null,
           _react2.default.createElement(
             'h3',
             null,
-            ' Choose An Animal: '
+            'Pick An Animal!'
           ),
           _react2.default.createElement('input', { name: 'animal', type: 'text' }),
           _react2.default.createElement(
             'h3',
             null,
-            ' Player 1: '
+            'Who Guesses? '
           ),
           _react2.default.createElement('input', { name: 'player1', type: 'text' }),
           _react2.default.createElement(
             'h3',
             null,
-            ' Player 2: '
+            'Who Answers?'
           ),
-          _react2.default.createElement('input', { name: 'player2', type: 'text' }),
-          _react2.default.createElement(
-            'button',
-            { id: 'start', onClick: function onClick(e) {
-                return _this2.createNewGame(e);
-              } },
-            'START'
-          )
+          _react2.default.createElement('input', { name: 'player2', type: 'text' })
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this2.createNewGame(e);
+            } },
+          'START'
         )
       );
     }

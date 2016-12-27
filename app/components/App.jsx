@@ -29,8 +29,8 @@ class App extends React.Component {
       case "Jason":
         return (
           <div id='navbar'>
-            <Link className='nav' id="main" to="/lobby">Princess Ollie's Animal Game</Link>
-            <br></br><Link className='nav' id="new" to="/new">+</Link>  
+            <Link className='nav' id="main" to="/lobby">Ollie's Animal Game</Link>
+            <Link className='nav' id="new" to="/new">+</Link>  
             {this.props.children}
           </div>   
         )  

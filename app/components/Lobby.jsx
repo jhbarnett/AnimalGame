@@ -28,7 +28,7 @@ class Lobby extends React.Component {
         this.state.games.map(game => 
           <div className='eachGame' key={game.id}>
             <Link to={`/play/${game.id}`}>
-              <div><span>animal: {game.animal}</span><br/>
+              <div><span>{game.player2} vs. {game.player1}</span><br/>
               <span>{game.count} of 21</span></div>
             </Link>
           </div>
