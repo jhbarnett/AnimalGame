@@ -5,12 +5,11 @@ const Ask = ({ currentUser, game, submitQuestion, lastQ }) => {
     case currentUser:
       return (
         <div>
-          <div className='gameCount'>{game.count}</div>
-          <div className='lastQ'><span>{lastQ.Q}  </span>
-            <span>{lastQ.A}</span></div>
+          <div className='gameCount'>{game.count} of 21</div>
+          <div className='lastQ'>Last Question: <br/>{lastQ.Q}<br/>{lastQ.A}</div>
           <form className='askForm'>
             <input name='question' placeholder='Ask something!'/>
-            <button onClick={(e) => submitQuestion(e)}>Submit</button>
+            <button onClick={(e) => submitQuestion(e)}>Ask</button>
           </form>
         </div>
       )

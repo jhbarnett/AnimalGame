@@ -24,13 +24,15 @@ var Answer = function Answer(_ref) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'currentAnimal' },
-          game.animal
+          { className: 'gameCount' },
+          game.count,
+          ' of 21'
         ),
         _react2.default.createElement(
           'div',
-          { className: 'gameCount' },
-          game.count
+          { className: 'currentAnimal' },
+          'Your Animal: ',
+          game.animal
         ),
         _react2.default.createElement(
           'div',
@@ -39,7 +41,7 @@ var Answer = function Answer(_ref) {
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'answer' },
           _react2.default.createElement(
             'button',
             { onClick: function onClick(e) {
@@ -53,11 +55,6 @@ var Answer = function Answer(_ref) {
                 return submitAnswer(e);
               } },
             'No'
-          ),
-          _react2.default.createElement(
-            'button',
-            null,
-            'Other'
           )
         )
       );
@@ -226,22 +223,17 @@ var Ask = function Ask(_ref) {
         _react2.default.createElement(
           'div',
           { className: 'gameCount' },
-          game.count
+          game.count,
+          ' of 21'
         ),
         _react2.default.createElement(
           'div',
           { className: 'lastQ' },
-          _react2.default.createElement(
-            'span',
-            null,
-            lastQ.Q,
-            '  '
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            lastQ.A
-          )
+          'Last Question: ',
+          _react2.default.createElement('br', null),
+          lastQ.Q,
+          _react2.default.createElement('br', null),
+          lastQ.A
         ),
         _react2.default.createElement(
           'form',

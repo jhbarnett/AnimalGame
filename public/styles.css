@@ -70,6 +70,49 @@
     width: 350px;
   }
 
+  .gameCount {
+    border: 2px solid black;
+    float: right;
+    border-right: none;
+    width: 350px;
+    padding: 20px;
+    margin-bottom: 70px;
+  }
+
+  .lastQ {
+    padding: 20px;
+    clear: both;
+    margin-bottom: 170px;
+    text-align: center;
+  }
+
+  .askForm input[name=question]{
+    width: 650px;
+    text-align: left;
+    font-size: 50px;
+    margin-left: 45px;
+  }
+
+  .askForm button{
+    height: 150px;
+    width: 150px;
+    font-size: 50px;
+    margin-left: 35px;
+  }
+
+  .answer button{
+    height: 300px;
+    width: 300px;
+    margin: 85px;
+    font-size: 70px;
+  }
+
+  .currentAnimal{
+    text-align: center;
+    margin: 120px;
+    clear: both;
+  }
+
   input {
     padding: 10px;
     width: 450px;
