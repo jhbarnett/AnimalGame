@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-const DB = mongoose.connect(
-  `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:41108/${process.env.DBNAME}`)
+const DB = mongoose.connect(process.env.MONGODB_URI)
 const Schema = mongoose.Schema
 
 const gameSchema = new Schema({
