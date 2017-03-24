@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from './appActions'
 
-import AppView from './appView'
+import AppView from './AppView'
 
 import Game from '../Game/Game.jsx';
 import Lobby from '../Lobby/Lobby.jsx';

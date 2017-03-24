@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom'
+import styles from './appStyles.less'
 
 const AppView = ({ routes }) => {
   return (
     <div>
-      <h1> HELLO </h1>
+      <h1 className={styles.test}> HELLO </h1>
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {
           routes.map((route, i) => 
