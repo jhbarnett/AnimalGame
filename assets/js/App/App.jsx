@@ -3,9 +3,33 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from './appActions'
 
+import AppView from './appView'
+
+import Game from '../Game/Game.jsx';
+import Lobby from '../Lobby/Lobby.jsx';
+import NewGame from '../NewGame/NewGame.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.subRoutes = [
+        {
+          path: '/',
+          exact: true,
+          title: 'Lobby',
+          component: Lobby
+        },{
+          path: '/game',
+          exact: false,
+          title: 'Game',
+          component: Game
+        },{
+          path: '/new',
+          exact: true,
+          title: 'New Game',
+          component: NewGame
+        }
+      ]
   }
 
   componentDidMount() {}
@@ -13,12 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.incrementAsync}>Increment after 1 second</button>
-        <button onClick={this.props.increment}>Increment immediately</button>
-        <button onClick={this.props.decrementAsync}>Decrement after 1 second</button>
-        <button onClick={this.props.decrement}>Decrement immediately</button>
-        <hr />
-        <div>Clicked: {this.props.count} times</div>
+        <AppView routes={this.subRoutes} />
       </div>
     )
   }

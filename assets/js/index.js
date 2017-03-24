@@ -10,9 +10,11 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import '../public/semantic/semantic.js';
 import '../public/semantic/semantic.less';
 
-import App from './App/App.jsx';
 import { counter } from './reducers';
 import rootSaga from './sagas';
+
+import App from './App/App.jsx';
+
 
 // Create a browser history
 const history = createHistory()
@@ -39,7 +41,7 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route path="/" component={App}/>
+        <Route path="/" component={App}/> 
       </div>
     </ConnectedRouter>
   </Provider> , document.getElementById('root'))
