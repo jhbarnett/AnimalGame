@@ -12,3 +12,4 @@ assets/public/webpack/*.woff
 *.save
 .DS_Store
 npm-debug.log
+webpack-stats.json
