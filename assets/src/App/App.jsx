@@ -5,17 +5,15 @@ import { Route } from 'react-router-dom'
 
 import AppView from './AppView'
 
-import Menu from '../Menu/Menu.jsx';
-import { openMenu } from '../Menu/menuActions';
-
-import Game from '../Game/Game.jsx';
-import Lobby from '../Lobby/Lobby.jsx';
-import NewGame from '../NewGame/NewGame.jsx';
+import Menu from '../Menu/Menu';
+import Game from '../Game/Game';
+import Lobby from '../Lobby/Lobby';
+import NewGame from '../NewGame/NewGame';
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.subRoutes = [
+    this.routes = [
         {
           path: '/',
           exact: true,
@@ -44,13 +42,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {
-        this.props.menu ? 
-          <Menu routes={this.subRoutes}/>
-          : <AppView routes={this.subRoutes} 
-              openMenu={this.props.openMenu.bind(this)}
-              activeComponent={this.props.activeComponent}/>
-        }
+        <AppView routes={this.routes} 
+          viewMenu={this.props.viewMenu}
+          Menu={Menu}
+          activeComponent={this.props.activeComponent}/>
       </div>
     )
   }
@@ -58,14 +53,13 @@ class App extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    menu: state.menuReducer,
+    viewMenu: state.menuReducer,
     activeComponent: state.appReducer
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    openMenu: openMenu
   }, dispatch)
 }
 

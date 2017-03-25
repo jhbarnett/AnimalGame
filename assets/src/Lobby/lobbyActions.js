@@ -1,15 +1,7 @@
-export const increment = () => {
-  return { type: 'INCREMENT' }
+export const getGamesAsync = (user) => {
+  return { type: 'GET_GAMES_ASYNC', payload: user }
 }
 
-export const incrementAsync = () => {
-  return { type: 'INCREMENT_ASYNC' }
-}
-
-export const decrement = () => {
-  return { type: 'DECREMENT' }
-}
-
-export const decrementAsync = () => {
-  return { type: 'DECREMENT_ASYNC' }
+export const openGame = (id) => {
+  return { type: 'OPEN_GAME', payload: id }
 }

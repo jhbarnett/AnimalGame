@@ -10,14 +10,23 @@ import MenuView from './MenuView'
 class Menu extends React.Component {
   constructor(props) {
     super(props)
-    this.routes = this.props.routes
+    this.routes = this.props.viewMenu ? this.filterMenuItems() : null;
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
+
+  filterMenuItems(){
+    return this.props.routes.filter(
+      (route) => route.title !== 'Game')
+  }
 
   render() {
     return (
-      <MenuView routes={this.routes} 
+      <MenuView routes={this.routes}
+        viewMenu={this.props.viewMenu}
+        openMenu={this.props.openMenu.bind(this)} 
         closeMenu={this.props.closeMenu.bind(this)} />
     )
   }
@@ -25,13 +34,13 @@ class Menu extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    menu: state.menuState,
-    active: state.appState
+    viewMenu: state.menuReducer
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
+    openMenu: Actions.openMenu,
     closeMenu: Actions.closeMenu
   }, dispatch)
 }
