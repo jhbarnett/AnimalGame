@@ -11,11 +11,13 @@
 @white: #ffffff;
 @font-family: 'Cabin', 'sans-serif'; 
 
-.round-buttons(@color: transparent, @size: 7em) {
+:global {
+  .roundButtons(@color: transparent, @size: 7em) {
   border-radius: 50%;
   height: @size;
   width: @size;
   background-color: @color;
+  }
 }
 
 

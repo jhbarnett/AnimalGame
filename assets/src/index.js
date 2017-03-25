@@ -7,7 +7,8 @@ import { Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 
-import { counter } from './reducers';
+import { appReducer } from './App/appReducer';
+import { menuReducer } from './Menu/menuReducer';
 import rootSaga from './sagas';
 
 import './reset.less'
@@ -25,7 +26,8 @@ const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
   combineReducers({
-    counter,
+    appReducer,
+    menuReducer,
     router: routerReducer
   }),
   applyMiddleware(routeMiddleware, sagaMiddleware)

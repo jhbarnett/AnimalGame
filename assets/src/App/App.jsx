@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as Actions from './appActions'
+import { Route } from 'react-router-dom'
 
 import AppView from './AppView'
+
+import Menu from '../Menu/Menu.jsx';
+import { openMenu } from '../Menu/menuActions';
 
 import Game from '../Game/Game.jsx';
 import Lobby from '../Lobby/Lobby.jsx';
@@ -33,15 +36,21 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/games')
-    .then(res => res)
-    .then(data => {console.log(data)})
+    // fetch('/api/games')
+    // .then(res => res)
+    // .then(data => {console.log(data)})
   }
 
   render() {
     return (
       <div>
-        <AppView routes={this.subRoutes} />
+        {
+        this.props.menu ? 
+          <Menu routes={this.subRoutes}/>
+          : <AppView routes={this.subRoutes} 
+              openMenu={this.props.openMenu.bind(this)}
+              activeComponent={this.props.activeComponent}/>
+        }
       </div>
     )
   }
@@ -49,16 +58,14 @@ class App extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    count: state.counter
+    menu: state.menuReducer,
+    activeComponent: state.appReducer
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    increment: Actions.increment,
-    incrementAsync: Actions.incrementAsync,
-    decrement: Actions.decrement,
-    decrementAsync: Actions.decrementAsync
+    openMenu: openMenu
   }, dispatch)
 }
 

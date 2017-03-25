@@ -4,26 +4,25 @@ import { Grid } from 'semantic-ui-react'
 
 import styles from './appStyles.less'
 
-const AppView = ({ routes }) => {
+const AppView = ({ routes, openMenu, activeComponent }) => {
 
   return (
-    <Grid className={styles.appWrap} container columns={6}>
+    <Grid className={styles.appWrap} celled>
       <Grid.Row className={styles.header}>
-        <h1>Header</h1>
+        <Grid.Column width={3}>
+          <div>{activeComponent}</div>
+        </Grid.Column>
+        <Grid.Column width={2} onClick={openMenu}>
+          <div>Menu</div>
+        </Grid.Column>
       </Grid.Row>
-      <ul style={{ listStyleType: 'none', padding: 0 }}>
-        {
-          routes.map((route, i) => 
-            <li key={i}>
-              <Link to={route.path}>{route.title}</Link>
-            </li>
-          )
-        }
-      </ul>
       <div>
         {
           routes.map((route, i) => 
-            <Route key={i} exact={route.exact} path={route.path} component={route.component}/>
+            <Route key={i} 
+              exact={route.exact} 
+              path={route.path} 
+              component={route.component}/>
           )
         }
       </div>
