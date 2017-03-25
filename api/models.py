@@ -1,5 +1,6 @@
 from django.db import models
 
-class Book(models.Model):
-	title = models.CharField(max_length=200, unique=True)
-	author = models.CharField(max_length=100)
+class Game(models.Model):
+	animal = models.CharField(max_length=50)
+	player1 = models.CharField(max_length=50)
+	player2 = models.CharField(max_length=50)

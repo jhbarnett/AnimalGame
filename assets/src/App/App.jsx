@@ -32,7 +32,11 @@ class App extends React.Component {
       ]
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    fetch('/api/games')
+    .then(res => res)
+    .then(data => {console.log(data)})
+  }
 
   render() {
     return (

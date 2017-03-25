@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from .models import Book
+from .models import Game
 
-class BookSerializer(serializers.ModelSerializer):
-	
+class GameSerializer(serializers.ModelSerializer):
+
 	class Meta:
-		model = Book
-		fields = ('title', 'author')
+		model = Game
+		fields = ('animal','player1','player2')

@@ -1,17 +1,12 @@
 from rest_framework import generics
   
-from .models import Book
-from .serializers import BookSerializer
+from .models import Game
+from .serializers import GameSerializer
   
-class BookList(generics.ListCreateAPIView):
+class GameList(generics.ListCreateAPIView):
 	"""
-	API endpoint for listing and creating Book objects
+	API endpoint for listing and creating Game objects
 	"""
-	queryset = Book.objects.all()
-	serializer_class = BookSerializer
-    
-          
-          
-          
-          
-          
+	queryset = Game.objects.all()
+	serializer_class = GameSerializer
+	print('hit')
