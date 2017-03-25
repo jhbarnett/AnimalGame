@@ -4,7 +4,7 @@ var BundleTracker = require('webpack-bundle-tracker')
 
 module.exports = {
     context: __dirname,
-    entry: ['babel-polyfill', './assets/js/index'], 
+    entry: ['babel-polyfill', './assets/src/index'], 
     
     output: {
         path: path.resolve('./assets/public/webpack/'), 
@@ -32,12 +32,23 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: 'style-loader!css-loader'
+                use: ['style-loader', {
+                        loader: 'css-loader', 
+                        options: {
+                            modules: true
+                        }
+                    }]
             },
             { 
-                test: /\.less$/, use: [
+                test: /\.less$/, 
+                use: [
                     'style-loader',
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    },
                     'less-loader'
                 ]
             },
@@ -78,5 +89,6 @@ module.exports = {
             target: 'http://localhost:8000'
             }
         }
-    }
+    },
+    devtool: 'source-map'
 };

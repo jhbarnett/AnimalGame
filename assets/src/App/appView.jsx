@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
+
 import styles from './appStyles.less'
 
 const AppView = ({ routes }) => {
+
   return (
-    <div>
-      <h1 className={styles.test}> HELLO </h1>
+    <Grid className={styles.appWrap} container columns={6}>
+      <Grid.Row className={styles.header}>
+        <h1>Header</h1>
+      </Grid.Row>
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {
           routes.map((route, i) => 
@@ -22,7 +27,7 @@ const AppView = ({ routes }) => {
           )
         }
       </div>
-    </div>
+    </Grid>
   )
 }
 

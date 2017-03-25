@@ -7,12 +7,10 @@ import { Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 
-import '../public/semantic/semantic.js';
-import '../public/semantic/semantic.less';
-
 import { counter } from './reducers';
 import rootSaga from './sagas';
 
+import './reset.less'
 import App from './App/App.jsx';
 
 
