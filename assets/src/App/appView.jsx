@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 import styles from './appStyles.less'
 
-const AppView = ({ routes, activeComponent, viewMenu, Menu }) => {
+const AppView = ({ routes, locale, viewMenu, Menu }) => {
 
   return (
     <Grid className={styles.appWrap} celled>
@@ -13,7 +13,7 @@ const AppView = ({ routes, activeComponent, viewMenu, Menu }) => {
           <Menu routes={routes}/> : (
           <Grid.Row className={styles.header}>
             <Grid.Column width={3}>
-              <div>{activeComponent}</div>
+              <div>{locale.title}</div>
             </Grid.Column>
             <Grid.Column width={2}>
               <Menu />

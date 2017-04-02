@@ -4,14 +4,14 @@ import { Grid } from 'semantic-ui-react'
 
 import styles from './menuStyles.less'
 
-const MenuView = ({ routes, viewMenu, openMenu, closeMenu }) => {
+const MenuView = ({ routes, viewMenu, toggleMenu }) => {
   if (viewMenu) {
     return (
       <Grid.Column className={styles.menuWrap}>
           {
             routes.map((route, i) => 
               <Link
-                onClick={() => closeMenu(route.title)} 
+                onClick={() => toggleMenu(route.title)} 
                 key={i} to={route.path}
                 className={styles.menuItem}>
                 <Grid.Row
@@ -27,7 +27,7 @@ const MenuView = ({ routes, viewMenu, openMenu, closeMenu }) => {
   }
   else {
     return (
-      <div onClick={openMenu}>Menu</div>
+      <div onClick={() => toggleMenu('Menu')}>Menu</div>
     )
   }
 }

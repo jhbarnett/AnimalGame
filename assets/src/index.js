@@ -1,15 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux';
 
-import { appReducer } from './App/appReducer';
-import { menuReducer } from './Menu/menuReducer';
-import rootSaga from './sagas';
+import rootReducer from './rootReducer'
+import rootSaga from './rootSaga';
 
 import './reset.less'
 import App from './App/App.jsx';
@@ -25,17 +24,11 @@ const routeMiddleware = routerMiddleware(history)
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
-  combineReducers({
-    appReducer,
-    menuReducer,
-    router: routerReducer
-  }),
+  rootReducer,
   applyMiddleware(routeMiddleware, sagaMiddleware)
 )
 
 sagaMiddleware.run(rootSaga)
-
-const action = type => store.dispatch({type})
 
 render( 
   <Provider store={store}>

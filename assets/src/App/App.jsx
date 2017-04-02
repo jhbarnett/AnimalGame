@@ -45,7 +45,7 @@ class App extends React.Component {
         <AppView routes={this.routes} 
           viewMenu={this.props.viewMenu}
           Menu={Menu}
-          activeComponent={this.props.activeComponent}/>
+          locale={this.props.locale}/>
       </div>
     )
   }
@@ -54,7 +54,7 @@ class App extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     viewMenu: state.menuReducer,
-    activeComponent: state.appReducer
+    locale: state.appReducer
   }
 }
 

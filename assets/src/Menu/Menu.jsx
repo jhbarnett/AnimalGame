@@ -14,7 +14,6 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
-
   }
 
   filterMenuItems(){
@@ -26,8 +25,7 @@ class Menu extends React.Component {
     return (
       <MenuView routes={this.routes}
         viewMenu={this.props.viewMenu}
-        openMenu={this.props.openMenu.bind(this)} 
-        closeMenu={this.props.closeMenu.bind(this)} />
+        toggleMenu={this.props.toggleMenu.bind(this)} />
     )
   }
 }
@@ -40,8 +38,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    openMenu: Actions.openMenu,
-    closeMenu: Actions.closeMenu
+    toggleMenu: Actions.toggleMenu
   }, dispatch)
 }
 

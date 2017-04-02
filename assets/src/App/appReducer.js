@@ -1,8 +1,10 @@
-export function appReducer(state = null, action) {
+import TYPE from '../actionTypes';
+
+export function appReducer(state = {}, action) {
   
   switch (action.type) {
-    case 'CLOSE_MENU':
-      return action.payload;
+    case TYPE.TOGGLE_MENU:
+      return { ...state, title: action.payload };
     default:
       return state;
   }
