@@ -1,24 +1,23 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom'
-import { Grid } from 'semantic-ui-react'
 
-import styles from './appStyles.less'
+import styles from './styles.less'
 
 const AppView = ({ routes, locale, viewMenu, Menu }) => {
 
   return (
-    <Grid className={styles.appWrap} celled>
+    <div className={styles.appWrap}>
       {
         viewMenu ? 
           <Menu routes={routes}/> : (
-          <Grid.Row className={styles.header}>
-            <Grid.Column width={3}>
-              <div>{locale.title}</div>
-            </Grid.Column>
-            <Grid.Column width={2}>
+          <div className={styles.header}>
+            <div>
+              <h1>{locale.title}</h1>
+            </div>
+            <div>
               <Menu />
-            </Grid.Column>
-          </Grid.Row> )
+            </div>
+          </div> )
       }
       <div>
         {
@@ -30,7 +29,7 @@ const AppView = ({ routes, locale, viewMenu, Menu }) => {
           )
         }
       </div>
-    </Grid>
+    </div>
   )
 }
 

@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import { Route, Link } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 
-import * as Actions from './menuActions'
-import MenuView from './MenuView'
+import * as Actions from './actions'
+import MenuView from './view'
 
 class Menu extends React.Component {
   constructor(props) {

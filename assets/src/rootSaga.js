@@ -1,4 +1,4 @@
-import * as app from './App/appSagas';
+import * as app from './App/sagas';
 
 
 export default function* rootSaga() {

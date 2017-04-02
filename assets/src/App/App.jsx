@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route } from 'react-router-dom'
 
-import AppView from './AppView'
+import AppView from './view'
 
 import Menu from '../Menu/Menu';
 import Game from '../Game/Game';
@@ -34,9 +34,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // fetch('/api/games')
-    // .then(res => res)
-    // .then(data => {console.log(data)})
+    fetch('/api/games')
+    .then(res => res.json())
+    .then(data => {console.log(data)})
   }
 
   render() {

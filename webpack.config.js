@@ -73,8 +73,8 @@ module.exports = {
                 loader: 'file-loader'
             },
             {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+                test: /\.(jpg|png|svg)$/,
+                loader: 'url-loader'
             }
         ]
     },
@@ -82,11 +82,14 @@ module.exports = {
         modules: ['node_modules'],
         extensions: ['.js', '.jsx']
     },
-
+    //TODO: remove in production
+    // output: {
+    //     publicPath: 'http://127.0.0.1:8000'
+    // },
     devServer: {
         proxy: {
             '/api/*': {
-            target: 'http://localhost:8000'
+                target: 'http://localhost:8000'
             }
         }
     },

@@ -11,7 +11,7 @@ import rootReducer from './rootReducer'
 import rootSaga from './rootSaga';
 
 import './reset.less'
-import App from './App/App.jsx';
+import App from './App/App';
 
 
 // Create a browser history

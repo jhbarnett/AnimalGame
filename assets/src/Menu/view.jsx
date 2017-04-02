@@ -1,33 +1,32 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom'
-import { Grid } from 'semantic-ui-react'
 
-import styles from './menuStyles.less'
+import styles from './styles.less'
 
 const MenuView = ({ routes, viewMenu, toggleMenu }) => {
   if (viewMenu) {
     return (
-      <Grid.Column className={styles.menuWrap}>
+      <div className={styles.menuWrap}>
           {
             routes.map((route, i) => 
               <Link
                 onClick={() => toggleMenu(route.title)} 
                 key={i} to={route.path}
-                className={styles.menuItem}>
-                <Grid.Row
-                  className={styles.menuItem}
-                  title={route.title}>
+                className={styles.menuItem}
+                title={route.title}>
+                <div>
                   {route.title}
-                </Grid.Row>
+                </div>
               </Link>
             )
           }
-      </Grid.Column>
+      </div>
     )
   }
   else {
     return (
-      <div onClick={() => toggleMenu('Menu')}>Menu</div>
+      //TODO: src relative to dev.html (production: ./webpack/Menu.png)
+      <a className={styles.menuIcon} onClick={() => toggleMenu('Menu')}><img src={'./Menu.png'}/></a>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as Actions from './gameActions'
+import * as Actions from './actions'
 
 class Game extends React.Component {
   constructor(props) {
