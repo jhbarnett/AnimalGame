@@ -19,7 +19,7 @@ const AppView = ({ routes, locale, viewMenu, Menu }) => {
             </div>
           </div> )
       }
-      <div>
+      <div className={styles.appContent}>
         {
           routes.map((route, i) => 
             <Route key={i} 

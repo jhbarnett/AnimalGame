@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
+/**
+  * LESS Variables
+**/
+@blue: #2d3047;
+@red: #e84855;
+@yellow: #ffcc47;
+@orange: #ff9b71;
+@green: #1b998b;
+@white: #ffffff;
+@font-family: 'Cabin', 'sans-serif'; 
+
+
+.circleButton(@color: transparent, @size: 7em) {
+border-radius: 50%;
+height: @size;
+width: @size;
+background-color: @color;
+}
+
+.input(@color: @green) {
+  border-top: 8px solid @color;
+  border-bottom: 8px solid @color;
+  height: 1.5em;
+  font-size: 1em;
+  color: @white;
+  text-align: center;
+  margin: 15px 0;
+} 
+
+.roundedButton(@bgcolor: transparent, @color: white, @width: 75%) {
+  height: 1.5em;
+  width: @width;
+  background-color: @bgcolor;
+  border: 8px solid @bgcolor;
+  border-radius: 15px; 
+  color: @color;
+  font-size: 1em;
+  margin: 15px;
+  
+}

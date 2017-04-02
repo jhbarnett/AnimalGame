@@ -5,30 +5,32 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga';
 
-import './reset.less'
+import './reset.less';
 import App from './App/App';
 
 
 // Create a browser history
-const history = createHistory()
+const history = createHistory();
 
 //middleware for intercepting and dispatching navigation actions
-const routeMiddleware = routerMiddleware(history)
+const routeMiddleware = routerMiddleware(history);
 
 //middleware for handling async functions
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   rootReducer,
   applyMiddleware(routeMiddleware, sagaMiddleware)
 )
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga);
+
+const action = type => store.dispatch({type})
 
 render( 
   <Provider store={store}>

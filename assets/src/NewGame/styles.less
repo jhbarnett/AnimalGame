@@ -1,0 +1,27 @@
+@import '../global.less';
+
+.NewGame {
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+
+    > h3 {
+      align-self: flex-start;
+    }
+
+    input {
+      width: 100%;
+      .input(@green);
+      margin: 50px;
+    }
+
+    button {
+      .roundedButton(@orange, @white, 85%);
+    }
+  }
+
+  
+}

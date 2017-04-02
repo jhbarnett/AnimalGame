@@ -32,7 +32,7 @@ class Menu extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    viewMenu: state.menuReducer
+    viewMenu: state.viewMenu
   }
 }
 

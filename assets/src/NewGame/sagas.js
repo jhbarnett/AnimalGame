@@ -1,22 +1,23 @@
+import TYPE from '../actionTypes'
 import { delay } from 'redux-saga'
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, call, takeEvery } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 
-// Our worker Saga: will perform the async increment task
-export function* incrementAsync() {
-  yield delay(1000)
-  yield put({ type: 'INCREMENT' })
+export function* makeNewGame() {
+  try {
+    //POST NEW GAME TO SERVER
+    // TODO: yield call();
+
+    yield put({type:'CREATE_GAME_SUCCESS'});
+    //navigate to lobby on successful game creation
+    yield put(push('/'));
+  } 
+  catch(err) {
+    console.log(err)
+    yield put({type:'CREATE_GAME_ERROR'})
+  }
 }
 
-export function* decrementAsync() {
-  yield delay(1000)
-  yield put({ type: 'DECREMENT' })
-}
-
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-export function* watchIncrementAsync() {
-  yield takeEvery('INCREMENT_ASYNC', incrementAsync)
-}
-
-export function* watchDecrementAsync() {
-  yield takeEvery('DECREMENT_ASYNC', decrementAsync)
+export function* watchCreateGame() {
+  yield takeEvery(TYPE.CREATE_GAME, makeNewGame)
 }

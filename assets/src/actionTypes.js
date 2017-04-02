@@ -1,5 +1,6 @@
 export default {
 
- TOGGLE_MENU: 'TOGGLE_MENU'
+ TOGGLE_MENU: 'TOGGLE_MENU',
+ CREATE_GAME: 'CREATE_GAME'
 
 }

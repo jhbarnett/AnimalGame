@@ -1,6 +1,6 @@
 import TYPE from '../actionTypes';
 
-export function menuReducer(state = true, action) {
+export function viewMenu(state = true, action) {
   
   switch (action.type) {
     case TYPE.TOGGLE_MENU:

@@ -53,7 +53,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    viewMenu: state.menuReducer,
+    viewMenu: state.viewMenu,
     locale: state.appReducer
   }
 }

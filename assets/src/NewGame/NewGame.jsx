@@ -2,35 +2,53 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from './actions'
+import NewGameView from './view'
 
 class NewGame extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      inputControl: ''
+    }
   }
 
   componentDidMount() {}
 
+  controlInput(e) {
+    this.setState({
+      inputControl: e.target.value
+    })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const animal = this.state.inputControl;
+    this.setState({
+      inputControl: ''
+    })
+    e.target.reset();
+    this.props.createGame(animal);
+  }
+
   render() {
     return (
-      <div>
-        NewGame
-      </div>
+      <NewGameView 
+        controlInput={::this.controlInput}
+        handleSubmit={::this.handleSubmit}
+      />
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    count: state.counter
+    animal: state.startNewGame.animal
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    increment: Actions.increment,
-    incrementAsync: Actions.incrementAsync,
-    decrement: Actions.decrement,
-    decrementAsync: Actions.decrementAsync
+    createGame: Actions.createGame
   }, dispatch)
 }
 

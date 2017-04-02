@@ -1,9 +1,7 @@
-import * as app from './App/sagas';
-
+import * as newGame from './NewGame/sagas';
 
 export default function* rootSaga() {
   yield [
-    // app.watchIncrementAsync(),
-    // app.watchDecrementAsync()
+    newGame.watchCreateGame()
   ]
 }

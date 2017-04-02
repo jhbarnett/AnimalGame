@@ -1,15 +1,5 @@
-export const increment = () => {
-  return { type: 'INCREMENT' }
-}
+import TYPE from '../actionTypes'
 
-export const incrementAsync = () => {
-  return { type: 'INCREMENT_ASYNC' }
-}
-
-export const decrement = () => {
-  return { type: 'DECREMENT' }
-}
-
-export const decrementAsync = () => {
-  return { type: 'DECREMENT_ASYNC' }
+export const createGame = (payload) => {
+  return {type: TYPE.CREATE_GAME, payload}
 }
