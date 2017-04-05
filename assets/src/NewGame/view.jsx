@@ -6,7 +6,7 @@ const NewGameView = ({ handleSubmit, controlInput }) => {
     <div className={styles.NewGame}>
       <form onSubmit={(e) => handleSubmit(e)}> 
         <h3>
-        Pick Your Animal:
+        Choose An Animal:
         </h3>
         <input onChange={(e) => controlInput(e)} />
         <button type="submit">

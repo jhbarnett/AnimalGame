@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route, Link } from 'react-router-dom'
-import { Grid } from 'semantic-ui-react'
 
 import * as Actions from './actions'
 import MenuView from './view'

@@ -6,13 +6,13 @@
   "scripts": {
     "start": "webpack && python manage.py runserver",
     "dev": "webpack-dev-server --content-base assets/public/webpack/ --hot",
+    "mig": "python manage.py migrate",
     "postinstall": "node semantic-fix.js"
   },
   "keywords": [
     "django",
     "react",
-    "webpack",
-    "semantic-ui-less"
+    "webpack"
   ],
   "author": "Jason Barnett",
   "license": "MIT",
