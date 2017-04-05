@@ -27,7 +27,12 @@ class NewGame extends React.Component {
       inputControl: ''
     })
     e.target.reset();
-    this.props.createGame(animal);
+    const data = {
+      animal,
+      player1: 'Jason',
+      player2: 'Olivia' 
+    }
+    this.props.createGame(data);
   }
 
   render() {

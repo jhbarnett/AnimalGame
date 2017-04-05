@@ -12,6 +12,9 @@ class Lobby extends React.Component {
   }
 
   componentDidMount() {
+    fetch('/api/games')
+    .then(res => res.json())
+    .then(data => {console.log(data)})
   }
 
   render() {

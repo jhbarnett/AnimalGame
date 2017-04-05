@@ -14,9 +14,9 @@ const MenuView = ({ routes, viewMenu, toggleMenu }) => {
                 key={i} to={route.path}
                 className={styles.menuItem}
                 title={route.title}>
-                <div>
+                <h2>
                   {route.title}
-                </div>
+                </h2>
               </Link>
             )
           }
