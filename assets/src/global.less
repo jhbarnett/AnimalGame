@@ -12,11 +12,13 @@
 @font-family: 'Cabin', 'sans-serif'; 
 
 
-.circleButton(@color: transparent, @size: 7em) {
-border-radius: 50%;
-height: @size;
-width: @size;
-background-color: @color;
+.circleButton(@color: transparent, @size: 5em) {
+  border-radius: 50%;
+  height: @size;
+  width: @size;
+  background-color: @color;
+  text-align: center;
+  line-height: @size;
 }
 
 .input(@color: @green) {
@@ -37,6 +39,5 @@ background-color: @color;
   border-radius: 15px; 
   color: @color;
   font-size: 1em;
-  margin: 15px;
-  
+  margin: 15px;  
 }

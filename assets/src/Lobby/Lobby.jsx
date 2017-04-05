@@ -1,10 +1,9 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Action from './actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Action from './actions';
 
-import Game from '../Game/Game'
-
+import LobbyView from './view';
 
 class Lobby extends React.Component {
   constructor(props) {
@@ -12,29 +11,28 @@ class Lobby extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/games')
-    .then(res => res.json())
-    .then(data => {console.log(data)})
+    this.props.fetchGames()
+
   }
 
   render() {
     return (
-      <div>
-        Lobby
-      </div>
+      <LobbyView
+        games={this.props.openGames}
+       />
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    games: state.lobbyReducer
+    openGames: state.playerGames.open
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    fetchGames: Action.getGamesAsync
+    fetchGames: Action.getOpenGames
   }, dispatch)
 }
 

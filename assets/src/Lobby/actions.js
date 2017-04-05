@@ -1,5 +1,5 @@
-export const getGamesAsync = (user) => {
-  return { type: 'GET_GAMES_ASYNC', payload: user }
+export const getOpenGames = (user) => {
+  return { type: 'GET_OPEN_GAMES', payload: user }
 }
 
 export const openGame = (id) => {
