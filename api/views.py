@@ -9,4 +9,3 @@ class GameList(generics.ListCreateAPIView):
 	"""
 	queryset = Game.objects.all()
 	serializer_class = GameSerializer
-	print('hit')
