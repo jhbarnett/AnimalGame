@@ -1,8 +1,8 @@
-export function lobbyReducer(state = null, action) {
+export function playerGames(state = {}, action) {
   
   switch (action.type) {
-    case 'GET_GAMES':
-      return action.payload;
+    case 'OPEN_GAMES_RETRIEVED':
+      return {...state, open: action.payload};
     default:
       return state;
   }

@@ -1,0 +1,52 @@
+@import '../global.less';
+
+.LobbyView {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .halfPage:first-child {
+    border-right: 5px solid @white;
+  }
+
+  .halfPage {
+      flex: 1;
+
+    h5 {
+      text-align: center;
+    }
+
+    .gamesSection {
+        height: 85vh;
+        overflow-y: scroll;
+      
+      .gamesRender {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }   
+  }
+
+  .game {
+    .circleButton(@yellow, 4.5em);
+    margin: 0 0 .75em;
+  }
+  
+  .game:nth-child(4n) {
+    background-color: @orange;
+  }
+
+  .game:nth-child(4n + 1) {
+    background-color: @green;
+  }
+
+  .game:nth-child(4n + 2) {
+    background-color: @yellow;
+  }
+
+  .game:nth-child(4n + 3) {
+    background-color: @red;
+  }
+}
