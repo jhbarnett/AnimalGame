@@ -8,5 +8,4 @@ class GameList(generics.ListCreateAPIView):
 	API endpoint for listing and creating Game objects
 	"""
 	queryset = Game.objects.all()
-  addGame = Game.objects.create()
 	serializer_class = GameSerializer
