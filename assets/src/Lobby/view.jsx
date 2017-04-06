@@ -3,7 +3,7 @@ import { Link, Route } from 'react-router-dom'
 
 import styles from './styles.less'
 
-const LobbyView = ({ games }) => {
+const LobbyView = ({ games, enterGame }) => {
   return (
     <div className={styles.LobbyView}>
       <div className={styles.halfPage}>
@@ -13,7 +13,11 @@ const LobbyView = ({ games }) => {
             {
               games ? games.map((game, i) => {
                 return (
-                  <a className={styles.game} key={i}>{game.animal}</a>
+                  <a className={styles.game} 
+                     key={i}
+                     onClick={() => enterGame(/*GAMEID*/)}>
+                  {game.animal}
+                  </a>
                 )
               }) : <h3>None</h3>
             }
@@ -27,7 +31,11 @@ const LobbyView = ({ games }) => {
             {
               games ? games.map((game, i) => {
                 return (
-                  <a className={styles.game} key={i}>{game.animal}</a>
+                  <a className={styles.game} 
+                     key={i}
+                     onClick={() => enterGame(/*GAMEID*/)}>
+                  {game.animal}
+                  </a>
                 )
               }) : <h3>None</h3>
             }

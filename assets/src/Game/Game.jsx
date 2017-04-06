@@ -1,19 +1,25 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from './actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from './actions';
+
+import GuessView from './Guess/view';
+import AnswerView from './Answer/view';
 
 class Game extends React.Component {
   constructor(props) {
     super(props)
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props.game)
+  }
 
   render() {
     return (
       <div>
-        Game
+        <GuessView />
+        <AnswerView />
       </div>
     )
   }
@@ -21,16 +27,12 @@ class Game extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    count: state.counter
+    game: state.manageGame.data
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    increment: Actions.increment,
-    incrementAsync: Actions.incrementAsync,
-    decrement: Actions.decrement,
-    decrementAsync: Actions.decrementAsync
   }, dispatch)
 }
 

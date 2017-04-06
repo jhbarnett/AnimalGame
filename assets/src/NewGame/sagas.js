@@ -16,7 +16,7 @@ export function* makeNewGame(action) {
   } 
   catch(error) {
     console.log(error)
-    yield put({type:'CREATE_GAME_ERROR', error})
+    yield put({type: TYPE.CREATE_GAME_ERROR, error})
   }
 }
 

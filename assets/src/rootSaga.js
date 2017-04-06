@@ -6,6 +6,7 @@ export default function* rootSaga() {
   yield [
     newGame.watchCreateGame(),
     menu.watchToggleMenu(),
-    lobby.watchGetOpenGames()
+    lobby.watchGetOpenGames(),
+    lobby.watchEnterGame()
   ]
 }
