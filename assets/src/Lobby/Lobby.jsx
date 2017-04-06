@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as Action from './actions';
 
 import LobbyView from './view';
@@ -19,6 +20,7 @@ class Lobby extends React.Component {
     return (
       <LobbyView
         games={this.props.openGames}
+        enterGame={this.props.enterGame}
        />
     )
   }
@@ -32,7 +34,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    fetchGames: Action.getOpenGames
+    fetchGames: Action.getOpenGames,
+    enterGame: Action.enterGame
   }, dispatch)
 }
 

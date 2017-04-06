@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack && python manage.py runserver",
     "dev": "webpack-dev-server --content-base assets/public/webpack/ --hot",
+    "makemig": "python manage.py makemigrations",
     "mig": "python manage.py migrate",
     "postinstall": "node semantic-fix.js"
   },

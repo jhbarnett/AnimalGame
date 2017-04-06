@@ -1,36 +1,89 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from './actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Action from './actions';
+
+import GuessView from './Guess/view';
+import AnswerView from './Answer/view';
 
 class Game extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      guess: '',
+      answer: ''
+    }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.loadGame()
+  }
+
+  loadGame(id = this.props.id) {
+    if (id) {
+      this.props.loadGame(id);
+    }
+  }
+
+  submitGuess(e) {}
+
+  controlGuess(e) {
+    this.setState({
+      guess: e.target.value
+    })
+  }
+  
+  submitAnswer(e) {}
+
+  controlAnswer(e) {
+    this.setState({
+      answer: e.target.value
+    })
+  }
+  
 
   render() {
-    return (
-      <div>
-        Game
-      </div>
-    )
+    if (this.props.game) {
+      switch (this.props.player) {
+        case this.props.game.player1:
+          return (
+            <AnswerView
+              player1={this.props.game.player1}
+              animal={this.props.game.animal}
+              control={::this.controlAnswer}
+              submit={::this.submitAnswer}
+            />
+          )
+        case this.props.game.player2:
+          return (
+            <GuessView
+              player2={this.props.game.player2}
+              control={::this.controlGuess}
+              submit={::this.submitGuess}
+            />
+          )
+        default:
+          return (
+            <div>Sorry, this doesn't seem to be your game.</div>
+          )
+      }
+    } else {
+      return (<div>Loading...</div>)
+    }
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    count: state.counter
+    game: state.manageGame.data,
+    id: state.manageGame.id,
+    player: 'Olivia'
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    increment: Actions.increment,
-    incrementAsync: Actions.incrementAsync,
-    decrement: Actions.decrement,
-    decrementAsync: Actions.decrementAsync
+    loadGame: Action.loadGame
   }, dispatch)
 }
 

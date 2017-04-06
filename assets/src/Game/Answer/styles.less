@@ -1,0 +1,60 @@
+@import '../../global.less';
+
+.answerView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  .countBanner {
+    background-color: @yellow;
+    border-radius: 0 25px 25px 0;
+    align-self: flex-start;
+    padding: .25em .75em;
+    margin: 1em 0 1em -1em;
+    font-size: .75em;
+  }
+
+  .question {
+    width: 70%;
+    line-height: 2em;
+    text-align: center;
+    text-overflow: wrap;
+    padding: 0 1em;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      .input(@orange);
+      width: 100%;
+      margin: 1em 0;
+    }
+
+    input::placeholder {
+      color: white;
+    }
+
+    button {
+      .circleButton(@red, 5em);
+    }
+    
+    button:first-child {
+      background-color: @green;
+      margin-right: .5em;
+    }
+  }
+
+  .animalBanner {
+    align-self: flex-end;
+    background-color: @orange;
+    border-radius: 25px 0 0 25px;
+    padding: .25em 1em;
+    margin: 1.5em -.5em .5em 0;
+    font-size: 1.25em;
+  }
+}

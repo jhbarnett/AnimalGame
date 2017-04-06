@@ -1,7 +1,9 @@
+import TYPE from '../actionTypes';
+
 export const getOpenGames = (user) => {
-  return { type: 'GET_OPEN_GAMES', payload: user }
+  return { type: TYPE.GET_OPEN_GAMES, payload: user }
 }
 
-export const openGame = (id) => {
-  return { type: 'OPEN_GAME', payload: id }
+export const enterGame = (id) => {
+  return { type: TYPE.ENTER_GAME, payload: id }
 }
