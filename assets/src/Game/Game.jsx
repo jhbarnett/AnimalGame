@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from './actions';
+import * as Action from './actions';
 
 import GuessView from './Guess/view';
 import AnswerView from './Answer/view';
@@ -12,14 +12,24 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.game)
+    this.loadGame();
+  }
+
+  loadGame(id = this.props.id) {
+    if (id) {
+      this.props.loadGame(id);
+    }
   }
 
   render() {
     return (
       <div>
-        <GuessView />
-        <AnswerView />
+        <GuessView 
+          game={this.props.game}
+          />
+        <AnswerView 
+          game={this.props.game}
+          />
       </div>
     )
   }
@@ -27,12 +37,14 @@ class Game extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    game: state.manageGame.data
+    game: state.manageGame.data,
+    id: state.manageGame.id
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
+    loadGame: Action.loadGame
   }, dispatch)
 }
 

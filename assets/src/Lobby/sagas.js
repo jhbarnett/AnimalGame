@@ -13,10 +13,7 @@ export function* watchGetOpenGames() {
 }
 
 export function* enterGame(action) {
-  const games = yield select((state) => state.playerGames.open);
-  const grabGame = (id) => games.filter((game) => game.id === id);
-  // yield put({type: 'GAME_ENTERED', payload: grabGame(action.payload)});
-  yield put({type: TYPE.GAME_ENTERED, payload: games[0]});
+  yield put({type: TYPE.GAME_ENTERED, payload: action.payload});
   yield put({type: TYPE.NAVIGATE, payload: 'Play'});
   yield put(push('/game'));
 }

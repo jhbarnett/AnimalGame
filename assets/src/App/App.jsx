@@ -33,8 +33,7 @@ class App extends React.Component {
       ]
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (

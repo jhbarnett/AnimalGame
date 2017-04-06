@@ -15,7 +15,7 @@ const LobbyView = ({ games, enterGame }) => {
                 return (
                   <a className={styles.game} 
                      key={i}
-                     onClick={() => enterGame(/*GAMEID*/)}>
+                     onClick={() => enterGame(game.id)}>
                   {game.animal}
                   </a>
                 )
@@ -33,7 +33,7 @@ const LobbyView = ({ games, enterGame }) => {
                 return (
                   <a className={styles.game} 
                      key={i}
-                     onClick={() => enterGame(/*GAMEID*/)}>
+                     onClick={() => enterGame(game.id)}>
                   {game.animal}
                   </a>
                 )
