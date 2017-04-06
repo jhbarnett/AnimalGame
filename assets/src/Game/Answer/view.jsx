@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.less';
 
-const AnswerView = ({animal}) => {
+const AnswerView = ({ animal, control, submit }) => {
   return (
     <div className={styles.answerView}>
       <div className={styles.countBanner}>12 Questions Left</div>
@@ -9,7 +9,9 @@ const AnswerView = ({animal}) => {
       Is it a mammal?
       </div>
       <form>
-        <input placeholder=""/>
+        <input 
+          onChange={control}
+          placeholder=""/>
         <div>
           <button>Yes</button>
           <button>No</button>

@@ -9,6 +9,10 @@ import AnswerView from './Answer/view';
 class Game extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      guess: '',
+      answer: ''
+    }
   }
 
   componentDidMount() {
@@ -21,6 +25,23 @@ class Game extends React.Component {
     }
   }
 
+  submitGuess(e) {}
+
+  controlGuess(e) {
+    this.setState({
+      guess: e.target.value
+    })
+  }
+  
+  submitAnswer(e) {}
+
+  controlAnswer(e) {
+    this.setState({
+      answer: e.target.value
+    })
+  }
+  
+
   render() {
     if (this.props.game) {
       switch (this.props.player) {
@@ -29,12 +50,16 @@ class Game extends React.Component {
             <AnswerView
               player1={this.props.game.player1}
               animal={this.props.game.animal}
+              control={::this.controlAnswer}
+              submit={::this.submitAnswer}
             />
           )
         case this.props.game.player2:
           return (
             <GuessView
               player2={this.props.game.player2}
+              control={::this.controlGuess}
+              submit={::this.submitGuess}
             />
           )
         default:
