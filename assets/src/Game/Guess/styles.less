@@ -1,1 +1,62 @@
 @import '../../global.less';
+
+.guessView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  .countBanner {
+    background-color: @yellow;
+    border-radius: 0 25px 25px 0;
+    align-self: flex-start;
+    padding: .25em .75em;
+    margin: 1em 0 1em -1em;
+    font-size: .75em;
+  }
+
+  form {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      .input(@orange);
+      width: 100%;
+      margin: 1em 0;
+    }
+
+    input::placeholder {
+      color: white;
+    }
+
+    button {
+      .roundedButton(@green, @white, 90%);
+      height: 2em;
+    } 
+  }
+
+  .slider {
+    margin-top: 2em;
+    flex: 1;
+    min-width: 95%;
+    width: auto;
+    padding-bottom: 1em;
+    overflow-x: scroll;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    .questionCard {
+      flex: 1;
+      min-width: 90%;
+      background-color: @red;
+      border-radius: 15px;
+    }
+
+  }
+
+}

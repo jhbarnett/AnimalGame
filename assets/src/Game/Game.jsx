@@ -52,7 +52,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     game: state.manageGame.data,
     id: state.manageGame.id,
-    player: 'Jason'
+    player: 'Olivia'
   }
 }
 
