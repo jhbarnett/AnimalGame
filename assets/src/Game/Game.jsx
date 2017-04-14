@@ -43,7 +43,14 @@ class Game extends React.Component {
     })
   }
   
-  submitAnswer(e) {}
+  submitAnswer(e, bool) {
+    e.preventDefault();
+    const [ answer, note ] = [ bool, this.state.answer ];
+    const question = this.props.unanswered;
+    const update = { ...question, note, answer };
+    this.props.submitAnswer(update);
+    this.setState({answer: ''});
+  }
 
   controlAnswer(e) {
     this.setState({
@@ -61,7 +68,7 @@ class Game extends React.Component {
               animal={this.props.game.animal}
               control={::this.controlAnswer}
               submit={::this.submitAnswer}
-              lastQ={this.props.lastQ}
+              unanswered={this.props.unanswered}
             />
           )
         case this.props.game.player2:
@@ -88,7 +95,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     game: state.manageGame.data,
     id: state.manageGame.id,
-    lastQ: state.manageGame.lastQ,
+    unanswered: state.manageGame.unanswered,
     questions: state.manageGame.questions,
     player: 'Jason'
   }
@@ -99,7 +106,7 @@ const matchDispatchToProps = (dispatch, ownProps) => {
     loadGame: Action.loadGame,
     submitGuess: Action.submitGuess,
     getAllQuestions: Action.retrieveAllQuestions,
-    // getLastQuestion: Action.getQuestion
+    submitAnswer: Action.submitAnswer
 
   }, dispatch)
 }

@@ -12,6 +12,6 @@ export default function* rootSaga() {
     game.watchLoadGame(),
     game.watchSubmitGuess(),
     game.watchRetrieveQuestions(),
-    // game.watchGetLastQuestion()
+    game.watchSubmitAnswer()
   ]
 }
