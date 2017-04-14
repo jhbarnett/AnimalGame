@@ -16,7 +16,7 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    this.loadGame()
+    this.loadGame();
   }
 
   loadGame(id = this.props.id) {
@@ -31,9 +31,7 @@ class Game extends React.Component {
     const game = this.props.id;
     const input = this.state.guess;
     this.props.submitGuess(game, input);
-    this.setState({
-      guess: ''
-    })
+    this.setState({ guess: '' });
     e.target.reset();
   }
 
@@ -60,7 +58,7 @@ class Game extends React.Component {
 
   render() {
     if (this.props.game) {
-      switch (this.props.player) {
+      switch (this.props.user) {
         case this.props.game.player1:
           return (
             <AnswerView
@@ -69,6 +67,8 @@ class Game extends React.Component {
               control={::this.controlAnswer}
               submit={::this.submitAnswer}
               unanswered={this.props.unanswered}
+              remaining={this.props.questions ? 
+                21 - this.props.questions.length : null}
             />
           )
         case this.props.game.player2:
@@ -78,6 +78,8 @@ class Game extends React.Component {
               control={::this.controlGuess}
               submit={::this.submitGuess}
               questions={this.props.questions}
+              remaining={this.props.questions ? 
+                21 - this.props.questions.length : null}
             />
           )
         default:
@@ -97,7 +99,7 @@ const mapStateToProps = (state, ownProps) => {
     id: state.manageGame.id,
     unanswered: state.manageGame.unanswered,
     questions: state.manageGame.questions,
-    player: 'Jason'
+    user: 'Jason'
   }
 }
 
@@ -107,7 +109,6 @@ const matchDispatchToProps = (dispatch, ownProps) => {
     submitGuess: Action.submitGuess,
     getAllQuestions: Action.retrieveAllQuestions,
     submitAnswer: Action.submitAnswer
-
   }, dispatch)
 }
 

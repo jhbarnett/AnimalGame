@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './styles.less';
 
-const AnswerView = ({ animal, control, submit, unanswered }) => {
+const AnswerView = ({ animal, control, submit, unanswered, remaining }) => {
+
   if (unanswered) {
     return (
       <div className={styles.answerView}>
-        <div className={styles.countBanner}>12 Questions Left</div>
+        <div className={styles.countBanner}>{remaining} Questions Left</div>
         <div className={styles.question}> 
           {unanswered.question}
         </div>
@@ -23,7 +24,7 @@ const AnswerView = ({ animal, control, submit, unanswered }) => {
     )
   } else {
     return (
-      <div>Loading...</div>
+      <div>Sorry, It's Not Your Turn</div>
     )
   }
 }

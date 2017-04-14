@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './styles.less';
 
-const GuessView = ({ control, submit, questions }) => {
+const GuessView = ({ control, submit, questions, remaining }) => {
   let prevQuestions = [];
   if (questions) { prevQuestions = questions };
 
   return (
     <div className={styles.guessView}>
-      <div className={styles.countBanner}>12 Questions Left</div>
+      <div className={styles.countBanner}>{remaining} Questions Left</div>
       <form onSubmit={(e) => submit(e)}>
         <input 
           onChange={control}

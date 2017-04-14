@@ -11,7 +11,7 @@ class GameSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
 	game = serializers.PrimaryKeyRelatedField(queryset=Game.objects.all())
-	note = serializers.CharField(allow_blank=True)
+	note = serializers.CharField(allow_blank=True, allow_null=True)
 
 	class Meta:
 		model = Question
