@@ -5,7 +5,7 @@ from .models import Question
 from .serializers import GameSerializer
 from .serializers import QuestionSerializer
   
-class GameListCreate(generics.ListCreateAPIView):
+class GameList(generics.ListCreateAPIView):
 	"""
 	API endpoint for listing and creating Game objects
 	"""
@@ -21,22 +21,15 @@ class GameRetrieve(generics.RetrieveAPIView):
 		id = self.kwargs['pk']
 		return Game.objects.filter(pk=id)
 
-class QuestionList(generics.ListAPIView):
-	"""
-	API endpoint for listing Question objects
-	"""
-	serializer_class = QuestionSerializer
-	def get_queryset(self):
-		game = self.kwargs['game_id']
-		return Question.objects.filter(game=game)
-
-class QuestionCreate(generics.CreateAPIView):
+class QuestionList(generics.ListCreateAPIView):
 	"""
 	API endpoint for creating Question objects
 	"""
-	queryset = Question.objects.all()
 	serializer_class = QuestionSerializer
-	
+
+	def get_queryset(self):
+		id = self.kwargs['game_id']
+		return Question.objects.filter(game=id)
 
 class QuestionRetrieveUpdate(generics.RetrieveUpdateAPIView):
 	"""

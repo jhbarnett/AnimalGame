@@ -10,6 +10,8 @@ export default function* rootSaga() {
     lobby.watchGetOpenGames(),
     lobby.watchEnterGame(),
     game.watchLoadGame(),
-    game.watchSubmitGuess()
+    game.watchSubmitGuess(),
+    game.watchRetrieveQuestions(),
+    // game.watchGetLastQuestion()
   ]
 }
