@@ -17,5 +17,5 @@ class Game(models.Model):
 class Question(models.Model):
 	game = models.ForeignKey(Game, on_delete=models.CASCADE)
 	question = models.CharField(max_length=160)
-	answer = models.BooleanField()
-	note = models.CharField(max_length=160)
+	answer = models.NullBooleanField(null=True)
+	note = models.CharField(max_length=160, null=True)

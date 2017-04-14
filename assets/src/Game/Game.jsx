@@ -25,7 +25,16 @@ class Game extends React.Component {
     }
   }
 
-  submitGuess(e) {}
+  submitGuess(e) {
+    e.preventDefault()
+    const game = this.props.id;
+    const input = this.state.guess;
+    this.props.submitGuess(game, input);
+    this.setState({
+      guess: ''
+    })
+    e.target.reset();
+  }
 
   controlGuess(e) {
     this.setState({
@@ -83,7 +92,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    loadGame: Action.loadGame
+    loadGame: Action.loadGame,
+    submitGuess: Action.submitGuess
   }, dispatch)
 }
 

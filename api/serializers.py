@@ -10,6 +10,7 @@ class GameSerializer(serializers.ModelSerializer):
 		fields = ('id', 'animal','player1','player2')
 
 class QuestionSerializer(serializers.ModelSerializer):
+	game = serializers.PrimaryKeyRelatedField(queryset=Game.objects.all())
 
 	class Meta:
 		model = Question

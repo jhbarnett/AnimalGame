@@ -5,7 +5,7 @@ const GuessView = ({ control, submit }) => {
   return (
     <div className={styles.guessView}>
       <div className={styles.countBanner}>12 Questions Left</div>
-      <form>
+      <form onSubmit={(e) => submit(e)}>
         <input 
           onChange={control}
           placeholder=""/>

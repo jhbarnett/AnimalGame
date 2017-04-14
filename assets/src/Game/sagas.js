@@ -11,3 +11,15 @@ export function* loadGame(action) {
 export function* watchLoadGame() {
   yield takeEvery('LOAD_GAME', loadGame);
 }
+
+export function* submitGuess(action) {
+  const game = action.payload.game;
+  const question = action.payload.input;
+  const res = yield call(API.postQuestion, game, question);
+  console.log(res)
+  // yield put({type: 'GAME_LOADED', payload: game});
+}
+
+export function* watchSubmitGuess() {
+  yield takeEvery('SUBMIT_GUESS', submitGuess);
+}
