@@ -42,12 +42,17 @@ export function* watchRetrieveQuestions() {
   yield takeEvery('RETRIEVE_QUESTIONS', retrieveQuestions);
 }
 
-// export function* getQuestion(action) {
-//   const id = action.payload;
-//   const data = yield call(API.getOneQuestion, id);
-//   yield put({type: 'LAST_QUESTION_RETRIEVED', payload: data});
-// }
+export function* submitAnswer(action) {
+  const questionID = action.payload.id;
+  const data = yield call(API.updateQuestion, questionID, action.payload);
+  
+  yield put({type: 'ANSWER_RETRIEVED', payload: data});
+  yield put({type: TYPE.NAVIGATE, payload: 'Lobby'})
+  yield put(push('/'));
 
-// export function* watchGetLastQuestion() {
-//   yield takeEvery('GET_QUESTION', getQuestion);
-// }
+  //TODO: CHANGE TURN ON QUESTION OBJECT
+}
+
+export function* watchSubmitAnswer() {
+  yield takeEvery('SUBMIT_ANSWER', submitAnswer);
+}

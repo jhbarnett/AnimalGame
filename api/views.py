@@ -31,11 +31,11 @@ class QuestionList(generics.ListCreateAPIView):
 		id = self.kwargs['game_id']
 		return Question.objects.filter(game=id)
 
-class QuestionRetrieveUpdate(generics.RetrieveUpdateAPIView):
+class QuestionInstance(generics.RetrieveUpdateAPIView):
 	"""
 	API endpoint for retrieving and updating single Question objects
 	"""
 	serializer_class = QuestionSerializer
 	def get_queryset(self):
-		game = self.kwargs['game_id']
-		return Question.objects.get_or_update(game=id)	
+		id = self.kwargs['pk']
+		return Question.objects.filter(pk=id)	

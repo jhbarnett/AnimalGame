@@ -10,7 +10,6 @@ export const retrieveAllQuestions = (game) => {
   return {type: 'RETRIEVE_QUESTIONS', payload: game}
 }
 
-// export const getQuestion = (game) => {
-//   console.log("action")
-//   return {type: 'GET_QUESTION', payload: game}
-// }
+export const submitAnswer = (question) => {
+  return {type: 'SUBMIT_ANSWER', payload: question}
+}
