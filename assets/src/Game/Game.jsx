@@ -22,10 +22,20 @@ class Game extends React.Component {
   loadGame(id = this.props.id) {
     if (id) {
       this.props.loadGame(id);
+      this.props.getAllQuestions(id);
     }
   }
 
-  submitGuess(e) {}
+  submitGuess(e) {
+    e.preventDefault()
+    const game = this.props.id;
+    const input = this.state.guess;
+    this.props.submitGuess(game, input);
+    this.setState({
+      guess: ''
+    })
+    e.target.reset();
+  }
 
   controlGuess(e) {
     this.setState({
@@ -40,7 +50,6 @@ class Game extends React.Component {
       answer: e.target.value
     })
   }
-  
 
   render() {
     if (this.props.game) {
@@ -52,6 +61,7 @@ class Game extends React.Component {
               animal={this.props.game.animal}
               control={::this.controlAnswer}
               submit={::this.submitAnswer}
+              lastQ={this.props.lastQ}
             />
           )
         case this.props.game.player2:
@@ -60,6 +70,7 @@ class Game extends React.Component {
               player2={this.props.game.player2}
               control={::this.controlGuess}
               submit={::this.submitGuess}
+              questions={this.props.questions}
             />
           )
         default:
@@ -77,13 +88,19 @@ const mapStateToProps = (state, ownProps) => {
   return {
     game: state.manageGame.data,
     id: state.manageGame.id,
-    player: 'Olivia'
+    lastQ: state.manageGame.lastQ,
+    questions: state.manageGame.questions,
+    player: 'Jason'
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    loadGame: Action.loadGame
+    loadGame: Action.loadGame,
+    submitGuess: Action.submitGuess,
+    getAllQuestions: Action.retrieveAllQuestions,
+    // getLastQuestion: Action.getQuestion
+
   }, dispatch)
 }
 
