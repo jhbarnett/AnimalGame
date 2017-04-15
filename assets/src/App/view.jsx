@@ -12,7 +12,7 @@ const AppView = ({ routes, locale, viewMenu, Menu }) => {
           <Menu routes={routes}/> : (
           <div className={styles.header}>
             <div>
-              <h1>{locale.title}</h1>
+              <h1>{locale}</h1>
             </div>
             <div>
               <Menu />
