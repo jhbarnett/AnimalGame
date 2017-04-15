@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga';
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import * as API from './API';

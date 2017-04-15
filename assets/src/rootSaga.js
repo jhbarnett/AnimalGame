@@ -1,3 +1,4 @@
+import * as app from './App/sagas';
 import * as newGame from './NewGame/sagas';
 import * as menu from './Menu/sagas';
 import * as lobby from './Lobby/sagas';
@@ -12,6 +13,7 @@ export default function* rootSaga() {
     game.watchLoadGame(),
     game.watchSubmitGuess(),
     game.watchRetrieveQuestions(),
-    game.watchSubmitAnswer()
+    game.watchSubmitAnswer(),
+    app.watchCreateUser()
   ]
 }
