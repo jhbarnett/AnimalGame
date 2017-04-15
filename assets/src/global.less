@@ -21,22 +21,22 @@
   font-size: 1em;
 }
 
-.input(@color: @green) {
+.input(@color: @green, @height: 1.5em) {
   border-top: 8px solid @color;
   border-bottom: 8px solid @color;
-  height: 1.5em;
-  font-size: 1em;
+  height: @height;
+  font-size: calc(@height - .5em);
   color: @white;
   text-align: center;
   margin: 15px 0;
 } 
 
-.roundedButton(@bgcolor: transparent, @color: white, @width: 75%) {
-  height: 1.5em;
+.roundedButton(@bgcolor: transparent, @color: white, @width: 75%, @height: 1.5em) {
+  height: @height;
   width: @width;
   background-color: @bgcolor;
   border: 8px solid @bgcolor;
   border-radius: 15px; 
   color: @color;
-  font-size: 1em;  
+  font-size: calc(@height - .5em);  
 }

@@ -7,14 +7,14 @@ const LoginView = ({ controlUsername, createUser }) => {
 
   return (
     <div className={styles.loginView}>
-      <h1>The Animal Game</h1>
       <form onSubmit={(e) => createUser(e)}>
         <input type='text' 
           placeholder='Username'
           onChange={(e) => controlUsername(e)}/>
         <input type='password' placeholder='Password' />
-        <button type='submit'>Play!</button>
+        <button type='submit'>Play</button>
       </form>
+      <h1>The Animal Game</h1>
     </div>
   )
 }
