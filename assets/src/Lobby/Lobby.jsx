@@ -20,6 +20,7 @@ class Lobby extends React.Component {
       <LobbyView
         games={this.props.openGames}
         enterGame={this.props.enterGame}
+        userID={this.props.user.id}
        />
     )
   }

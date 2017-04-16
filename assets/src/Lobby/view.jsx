@@ -3,7 +3,10 @@ import { Link, Route } from 'react-router-dom'
 
 import styles from './styles.less'
 
-const LobbyView = ({ games, enterGame }) => {
+const LobbyView = ({ games, enterGame, userID }) => {
+  const answer = games ? games.filter(g => g.player1 === userID) : []; 
+  const guess = games ? games.filter(g => g.player2 === userID) : []; 
+
   return (
     <div className={styles.LobbyView}>
       <div className={styles.halfPage}>
@@ -11,7 +14,7 @@ const LobbyView = ({ games, enterGame }) => {
         <div className={styles.gamesSection}>
           <div className={styles.gamesRender}>
             {
-              games ? games.map((game, i) => {
+              guess.map((game, i) => {
                 return (
                   <a className={styles.game} 
                      key={i}
@@ -19,7 +22,7 @@ const LobbyView = ({ games, enterGame }) => {
                   {game.animal}
                   </a>
                 )
-              }) : <h3>None</h3>
+              })
             }
           </div>
         </div>
@@ -29,7 +32,7 @@ const LobbyView = ({ games, enterGame }) => {
         <div className={styles.gamesSection}>
           <div className={styles.gamesRender}>
             {
-              games ? games.map((game, i) => {
+              answer.map((game, i) => {
                 return (
                   <a className={styles.game} 
                      key={i}
@@ -37,7 +40,7 @@ const LobbyView = ({ games, enterGame }) => {
                   {game.animal}
                   </a>
                 )
-              }) : <h3>None</h3>
+              })
             }
           </div>
         </div>

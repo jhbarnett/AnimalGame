@@ -4,7 +4,6 @@ import * as API from './API';
 import TYPE from '../actionTypes';
 
 export function* submitUser(action) {
-  console.log(action)
   const user = yield call(API.loginUser, action.payload);
   if (user.hasOwnProperty('id')) {
     yield put({type: 'USER_AUTHENTICATED', payload: user});
