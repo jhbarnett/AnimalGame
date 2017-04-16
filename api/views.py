@@ -1,19 +1,28 @@
 from rest_framework import generics
-
+from django.db.models import Q
 from .models import Game
 from .models import Question
 from .serializers import GameSerializer
 from .serializers import QuestionSerializer
-
   
-class GameList(generics.ListCreateAPIView):
+class GameList(generics.ListAPIView):
 	"""
-	API endpoint for listing and creating Game objects
+	API endpoint for listing Game objects
+	"""
+	serializer_class = GameSerializer
+	def get_queryset(self):
+		user = self.kwargs['user']
+		return Game.objects.filter(Q(player1=user) | Q(player2=user))
+
+class GameCreate(generics.CreateAPIView):
+	"""
+	API endpoint for creating Game objects
 	"""
 	queryset = Game.objects.all()
 	serializer_class = GameSerializer
 
-class GameRetrieve(generics.RetrieveAPIView):
+
+class GameInstance(generics.RetrieveAPIView):
 	"""
 	API endpoint for retrieving single Game objects
 	"""
@@ -47,20 +56,31 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer
 from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate, login
 
 class UserCreate(APIView):
 	""" 
 	Creates the user. 
 	"""
-	def post(self, request, format='json'):
-		serializer = UserSerializer(data=request.data)
-		if serializer.is_valid():
-			user = serializer.save()
-			if user:
-				token = Token.objects.create(user=user)
+	def post(self, request):
+		user = authenticate(username=request.data['username'], password=request.data['password'])
+		if user is not None:
+			login(request, user)
+			serializer = UserSerializer(user)
+			json = serializer.data
+			return Response(json, status=status.HTTP_200_OK)
+		else:	
+			serializer = UserSerializer(data=request.data)
+			if serializer.is_valid():
+				newUser = serializer.save()
 				json = serializer.data
-				json['token'] = token.key
 				return Response(json, status=status.HTTP_201_CREATED)
-		
-		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)				
+			
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserList(generics.ListAPIView):
+	"""
+	API endpoint for listing User objects
+	"""
+	queryset = User.objects.all()
+	serializer_class = UserSerializer

@@ -38,17 +38,14 @@ class App extends React.Component {
 
   componentDidMount() {}
 
-  createUser(e) {
+  setUser(e) {
     e.preventDefault();
     const password = document.querySelector('input[type=password]').value;
     const user = {
       name: this.state.user,
       password
     }
-    this.props.createUser(user);
-    this.setState({
-      user: ''
-    })
+    this.props.setUser(user);
   }
 
   controlUsername(e) {
@@ -71,7 +68,7 @@ class App extends React.Component {
     } else {
       return (
         <LoginView 
-          createUser={::this.createUser}
+          submitUser={::this.setUser}
           controlUsername={::this.controlUsername}
         />
       )
@@ -89,7 +86,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    createUser: Actions.createUser
+    setUser: Actions.setUser
   }, dispatch)
 }
 

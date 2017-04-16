@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 class Game(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	animal = models.CharField(max_length=50)
-	# TODO: foreign keys to Player ID
-	player1 = models.CharField(max_length=50)
-	player2 = models.CharField(max_length=50)
+	player1 = models.ForeignKey(User, related_name="player1")
+	player2 = models.ForeignKey(User, related_name="player2")
 
 # class Player(models.Model):
 # 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

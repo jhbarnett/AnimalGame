@@ -12,8 +12,7 @@ class Lobby extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchGames()
-
+    this.props.fetchGames(this.props.user)
   }
 
   render() {
@@ -28,7 +27,8 @@ class Lobby extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    openGames: state.playerGames.open
+    openGames: state.playerGames.open,
+    user: state.appReducer.user
   }
 }
 
