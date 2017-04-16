@@ -12,7 +12,9 @@ class NewGame extends React.Component {
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getUserList()
+  }
 
   controlInput(e) {
     this.setState({
@@ -29,10 +31,10 @@ class NewGame extends React.Component {
     e.target.reset();
     const data = {
       animal,
-      player1: 'Jason',
-      player2: 'Olivia' 
+      player1: this.props.user.id,
+      player2: 1
     }
-    this.props.createGame(data);
+    this.props.createGame(data, this.props.user);
   }
 
   render() {
@@ -40,6 +42,7 @@ class NewGame extends React.Component {
       <NewGameView 
         controlInput={::this.controlInput}
         handleSubmit={::this.handleSubmit}
+        userList={this.props.userList}
       />
     )
   }
@@ -47,13 +50,16 @@ class NewGame extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    animal: state.startNewGame.animal
+    animal: state.startNewGame.animal,
+    user: state.appReducer.user,
+    userList: state.appReducer.userList
   }
 }
 
 const matchDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators({
-    createGame: Actions.createGame
+    createGame: Actions.createGame,
+    getUserList: Actions.getUserList
   }, dispatch)
 }
 

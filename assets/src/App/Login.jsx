@@ -3,11 +3,11 @@ import { Link, Route } from 'react-router-dom'
 
 import styles from './styles.less'
 
-const LoginView = ({ controlUsername, createUser }) => {
+const LoginView = ({ controlUsername, submitUser }) => {
 
   return (
     <div className={styles.loginView}>
-      <form onSubmit={(e) => createUser(e)}>
+      <form onSubmit={(e) => submitUser(e)}>
         <input type='text' 
           placeholder='Username'
           onChange={(e) => controlUsername(e)}/>

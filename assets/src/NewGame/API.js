@@ -7,6 +7,6 @@ export function createGame(data) {
     body: JSON.stringify(data)
   };
 
-  return fetch('/api/games', POST)
+  return fetch(`/api/games`, POST)
   .then(res => res.json())
 }

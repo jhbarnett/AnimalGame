@@ -39,7 +39,7 @@ class AccountsTest(APITestCase):
 
 	def test_create_user_with_short_password(self):
 		"""
-		Ensure user is not created for password lengths less than 8.
+		Ensure user is not created for password lengths less than 4.
 		"""
 		data = {
 		'username': 'foobar',

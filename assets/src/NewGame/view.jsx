@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.less';
 
-const NewGameView = ({ handleSubmit, controlInput }) => {
+const NewGameView = ({ handleSubmit, controlInput, userList }) => {
   return (
     <div className={styles.NewGame}>
       <form onSubmit={(e) => handleSubmit(e)}> 

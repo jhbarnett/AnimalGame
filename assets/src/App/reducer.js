@@ -6,6 +6,8 @@ export function appReducer(state = {}, action) {
       return { ...state, title: action.payload };
     case 'USER_AUTHENTICATED':
       return { ...state, user: action.payload };
+    case 'RETRIEVED_USERS':
+      return { ...state, userList: action.payload }; 
     default:
       return state;
   }

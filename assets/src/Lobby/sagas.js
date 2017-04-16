@@ -4,7 +4,7 @@ import * as API from './API';
 import TYPE from '../actionTypes';
 
 export function* fetchOpenGames(action) {
-  const data = yield call(API.getOpenGames, /*TODO: PASS IN USER*/);
+  const data = yield call(API.getOpenGames, action.payload.id);
   yield put({type: TYPE.OPEN_GAMES_RETRIEVED, payload: data});
 }
 

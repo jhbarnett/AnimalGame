@@ -5,6 +5,8 @@ from .models import Game
 from .models import Question
 
 class GameSerializer(serializers.ModelSerializer):
+	player1 = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+	player2 = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
 	class Meta:
 		model = Game
@@ -19,20 +21,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'game','question','answer', 'note')
 
 class UserSerializer(serializers.ModelSerializer):
-	# email = serializers.EmailField(
-	# 					required=True,
-	# 					validators=[UniqueValidator(queryset=User.objects.all())])
+	username = serializers.CharField(max_length=32, validators=[UniqueValidator(queryset=User.objects.all())])
 
-	username = serializers.CharField(
-							max_length=32,
-							validators=[UniqueValidator(queryset=User.objects.all())])
-
-	password = serializers.CharField(min_length=8, write_only=True)
-
-	def create(self, validated_data):
-		user = User.objects.create_user(validated_data['username'], #validated_data['email'],
-			validated_data['password'])
-		return user
+	password = serializers.CharField(min_length=4, write_only=True)
 
 	class Meta:
 		model = User

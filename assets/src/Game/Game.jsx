@@ -58,7 +58,7 @@ class Game extends React.Component {
 
   render() {
     if (this.props.game) {
-      switch (this.props.user) {
+      switch (this.props.user.id) {
         case this.props.game.player1:
           return (
             <AnswerView
@@ -99,7 +99,7 @@ const mapStateToProps = (state, ownProps) => {
     id: state.manageGame.id,
     unanswered: state.manageGame.unanswered,
     questions: state.manageGame.questions,
-    user: 'Jason'
+    user: state.appReducer.user
   }
 }
 
