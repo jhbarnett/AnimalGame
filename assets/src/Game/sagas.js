@@ -48,10 +48,18 @@ export function* submitAnswer(action) {
   yield put({type: 'ANSWER_RETRIEVED', payload: data});
   yield put({type: TYPE.NAVIGATE, payload: 'Lobby'})
   yield put(push('/'));
-
-  //TODO: CHANGE TURN ON QUESTION OBJECT
 }
 
 export function* watchSubmitAnswer() {
   yield takeEvery('SUBMIT_ANSWER', submitAnswer);
+}
+
+export function* updateGame(action) {
+  const data = yield call(API.updateGame, action.payload);
+  
+  yield put({type: 'GAME_UPDATED', payload: data});
+}
+
+export function* watchUpdateGame() {
+  yield takeEvery('UPDATE_GAME', updateGame);
 }

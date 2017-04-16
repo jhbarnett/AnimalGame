@@ -7,10 +7,11 @@ from .models import Question
 class GameSerializer(serializers.ModelSerializer):
 	player1 = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 	player2 = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-
+	turn = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+	
 	class Meta:
 		model = Game
-		fields = ('id', 'animal','player1','player2')
+		fields = ('id', 'animal','player1','player2', 'turn', 'count')
 
 class QuestionSerializer(serializers.ModelSerializer):
 	game = serializers.PrimaryKeyRelatedField(queryset=Game.objects.all())

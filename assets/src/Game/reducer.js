@@ -6,7 +6,7 @@ export function manageGame(state = {}, action) {
     case TYPE.GAME_ENTERED:
       return { ...state, id: action.payload };
     case 'GAME_LOADED':
-      return { ...state, data: action.payload };
+      return { ...state, current: action.payload };
     case 'QUESTION_CREATED':
       return { ...state, question: action.payload };
     case 'QUESTIONS_RETRIEVED':
@@ -15,6 +15,8 @@ export function manageGame(state = {}, action) {
       return { ...state, unanswered: action.payload };
     case 'ANSWER_RETRIEVED':
       return { ...state, unanswered: null };
+    case 'GAME_UPDATED':
+      return { ...state, current: action.payload };  
     default:
       return state;
   }

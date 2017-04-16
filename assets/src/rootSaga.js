@@ -14,6 +14,7 @@ export default function* rootSaga() {
     game.watchSubmitGuess(),
     game.watchRetrieveQuestions(),
     game.watchSubmitAnswer(),
+    game.watchUpdateGame(),
     app.watchSetUser(),
     app.watchGetAllUsers()
   ]

@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './styles.less';
 
-const NewGameView = ({ handleSubmit, controlAnimal, controlOppo, userList, user, dropdown }) => {
-  const opponents = userList ? userList.filter(u => u.id !== user.id) : [];
+const NewGameView = ({ handleSubmit, controlAnimal, controlOppo, opponents, defaultOpponent }) => {
 
   return (
     <div className={styles.NewGame}>
@@ -17,7 +16,7 @@ const NewGameView = ({ handleSubmit, controlAnimal, controlOppo, userList, user,
         <label>
         Choose An Opponent:
         </label>
-        <select onChange={(e) => controlOppo(e)} >
+        <select value={defaultOpponent} onChange={(e) => controlOppo(e)} >
           {
             opponents.map((opp, i) => 
               <option key={i} value={opp.id}>{opp.username}</option>

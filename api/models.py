@@ -7,12 +7,8 @@ class Game(models.Model):
 	animal = models.CharField(max_length=50)
 	player1 = models.ForeignKey(User, related_name="player1")
 	player2 = models.ForeignKey(User, related_name="player2")
-
-# class Player(models.Model):
-# 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-# 	name = models.CharField(max_length=50)
-# 	wins = models.IntegerField(default=0, editable=True)
-# 	losses = models.IntegerField(default=0, editable=True)
+	turn = models.ForeignKey(User, related_name="turn")
+	count = models.IntegerField(default=21)
 
 class Question(models.Model):
 	game = models.ForeignKey(Game, on_delete=models.CASCADE)

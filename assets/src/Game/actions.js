@@ -13,3 +13,7 @@ export const retrieveAllQuestions = (game) => {
 export const submitAnswer = (question) => {
   return {type: 'SUBMIT_ANSWER', payload: question}
 }
+
+export const updateGame = (payload) => {
+  return {type: 'UPDATE_GAME', payload}
+}

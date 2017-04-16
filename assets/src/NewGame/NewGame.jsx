@@ -9,8 +9,7 @@ class NewGame extends React.Component {
     super(props)
     this.state = {
       animalControl: '',
-      oppoControl: null,
-      dropdown: false
+      dropdown: 0
     }
   }
 
@@ -26,38 +25,41 @@ class NewGame extends React.Component {
 
   controlOppo(e) {
     this.setState({
-      oppoControl: e.target.value
+      dropdown: e.target.value
     })
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const animal = this.state.animalControl;
-    const oppo = this.state.oppoControl;
-    this.setState({
-      animalControl: '',
-      oppoControl: 0
-    })
+    const oppo = document.querySelector('select').value;
+
     e.target.reset();
     const data = {
       animal,
       player1: this.props.user.id,
       player2: oppo,
-      // turn: oppo,
-      // count: 21
+      turn: oppo,
+      count: 21
     }
     this.props.createGame(data, this.props.user);
   }
 
+  setDefault(id) {
+    this.setState({
+      dropdown: id
+    })
+  }
+
   render() {
+    const opponents = this.props.userList ? this.props.userList.filter(u => u.id !== this.props.user.id) : [];
     return (
       <NewGameView 
         controlAnimal={::this.controlAnimal}
         controlOppo={::this.controlOppo}
         handleSubmit={::this.handleSubmit}
-        userList={this.props.userList}
-        user={this.props.user}
-        dropdown={this.state.dropdown}
+        opponents={opponents}
+        defaultOpponent={opponents.length ? opponents[0].id : 0}
       />
     )
   }

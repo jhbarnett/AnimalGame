@@ -4,8 +4,8 @@ import { Link, Route } from 'react-router-dom'
 import styles from './styles.less'
 
 const LobbyView = ({ games, enterGame, userID }) => {
-  const answer = games ? games.filter(g => g.player1 === userID) : []; 
-  const guess = games ? games.filter(g => g.player2 === userID) : []; 
+  const answer = games ? games.filter(g => g.player1 === userID && g.turn === userID) : []; 
+  const guess = games ? games.filter(g => g.player2 === userID && g.turn === userID) : []; 
 
   return (
     <div className={styles.LobbyView}>

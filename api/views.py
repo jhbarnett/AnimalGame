@@ -22,7 +22,7 @@ class GameCreate(generics.CreateAPIView):
 	serializer_class = GameSerializer
 
 
-class GameInstance(generics.RetrieveAPIView):
+class GameInstance(generics.RetrieveUpdateAPIView):
 	"""
 	API endpoint for retrieving single Game objects
 	"""

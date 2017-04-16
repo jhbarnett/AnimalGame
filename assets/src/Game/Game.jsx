@@ -33,6 +33,7 @@ class Game extends React.Component {
     this.props.submitGuess(game, input);
     this.setState({ guess: '' });
     e.target.reset();
+    this.updateGame(this.props.game, 'GUESS')
   }
 
   controlGuess(e) {
@@ -48,12 +49,24 @@ class Game extends React.Component {
     const update = { ...question, note, answer };
     this.props.submitAnswer(update);
     this.setState({answer: ''});
+    this.updateGame(this.props.game, 'ANSWER')
   }
 
   controlAnswer(e) {
     this.setState({
       answer: e.target.value
     })
+  }
+
+  updateGame(game, action) {
+    let update = {...game}
+    if (action === 'GUESS') {
+      update.turn = game.player1;
+      update.count = game.count - 1;
+    } else if (action === 'ANSWER') {
+      update.turn = game.player2;
+    }
+    this.props.updateGame(update)
   }
 
   render() {
@@ -67,8 +80,7 @@ class Game extends React.Component {
               control={::this.controlAnswer}
               submit={::this.submitAnswer}
               unanswered={this.props.unanswered}
-              remaining={this.props.questions ? 
-                21 - this.props.questions.length : null}
+              remaining={this.props.game.count}
             />
           )
         case this.props.game.player2:
@@ -78,8 +90,7 @@ class Game extends React.Component {
               control={::this.controlGuess}
               submit={::this.submitGuess}
               questions={this.props.questions}
-              remaining={this.props.questions ? 
-                21 - this.props.questions.length : null}
+              remaining={this.props.game.count}
             />
           )
         default:
@@ -95,7 +106,7 @@ class Game extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    game: state.manageGame.data,
+    game: state.manageGame.current,
     id: state.manageGame.id,
     unanswered: state.manageGame.unanswered,
     questions: state.manageGame.questions,
@@ -108,7 +119,8 @@ const matchDispatchToProps = (dispatch, ownProps) => {
     loadGame: Action.loadGame,
     submitGuess: Action.submitGuess,
     getAllQuestions: Action.retrieveAllQuestions,
-    submitAnswer: Action.submitAnswer
+    submitAnswer: Action.submitAnswer,
+    updateGame: Action.updateGame
   }, dispatch)
 }
 

@@ -44,3 +44,18 @@ export function updateQuestion(id, question) {
   .then(res => res.json())
   .catch(err => console.log(err))
 }
+
+export function updateGame(game) {
+  console.log(game)
+  const PUT = { 
+    method: 'PUT',
+    headers: { 
+      'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify(game)
+  };
+
+  return fetch(`/api/game/${game.id}`, PUT)
+  .then(res => res.json())
+  .catch(err => console.log(err))
+}
