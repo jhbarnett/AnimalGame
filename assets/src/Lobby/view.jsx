@@ -14,15 +14,12 @@ const LobbyView = ({ games, enterGame, userID }) => {
         <div className={styles.gamesSection}>
           <div className={styles.gamesRender}>
             {
-              guess.map((game, i) => {
-                return (
-                  <a className={styles.game} 
-                     key={i}
-                     onClick={() => enterGame(game.id)}>
-                  {game.animal}
-                  </a>
-                )
-              })
+              guess.map((game, i) =>
+                <a className={styles.game} 
+                   key={i}
+                   onClick={() => enterGame(game.id)}>
+                ???</a>
+              )
             }
           </div>
         </div>
