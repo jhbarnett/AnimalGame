@@ -18,9 +18,9 @@ const GuessView = ({ control, submit, questions, remaining, opponent }) => {
         <button>Submit</button>
       </form>
       <div className={styles.slider}>
-        { prevQuestions.map((q, i) => 
+        { prevQuestions.map((q, i, arr) => 
           <div className={styles.questionCard} key={i}>
-            <div>{i+1}</div>
+            <div>{arr.length - i}</div>
             <div>{q.question}</div>
             <div>{q.answer ? "Yes" : "No"}</div>
             <div>{q.note ? q.note : null}</div>
