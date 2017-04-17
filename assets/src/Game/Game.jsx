@@ -30,10 +30,15 @@ class Game extends React.Component {
     e.preventDefault()
     const game = this.props.id;
     const input = this.state.guess;
+    if (input.toLowerCase().includes(this.props.game.animal.toLowerCase())) {
+      console.log("~~~~~~~~~~~~~YOU GOT IT!~~~~~~~~~~~~~")
+      this.updateGame(this.props.game, 'GAMEOVER')
+    } else {
+      this.updateGame(this.props.game, 'GUESS')
+    }
     this.props.submitGuess(game, input);
     this.setState({ guess: '' });
     e.target.reset();
-    this.updateGame(this.props.game, 'GUESS')
   }
 
   controlGuess(e) {
@@ -63,8 +68,12 @@ class Game extends React.Component {
     if (action === 'GUESS') {
       update.turn = game.player1;
       update.count = game.count - 1;
+      if (update.count === 0) { update.complete = true; }
     } else if (action === 'ANSWER') {
       update.turn = game.player2;
+    } else if (action === 'GAMEOVER' || update.complete === true) {
+      update.complete = true;
+      update.turn = 1;
     }
     this.props.updateGame(update)
   }
@@ -75,7 +84,6 @@ class Game extends React.Component {
         case this.props.game.player1:
           return (
             <AnswerView
-              player1={this.props.game.player1}
               animal={this.props.game.animal}
               control={::this.controlAnswer}
               submit={::this.submitAnswer}
@@ -86,7 +94,6 @@ class Game extends React.Component {
         case this.props.game.player2:
           return (
             <GuessView
-              player2={this.props.game.player2}
               control={::this.controlGuess}
               submit={::this.submitGuess}
               questions={this.props.questions}

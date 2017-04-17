@@ -7,13 +7,30 @@
   justify-content: center;
   height: 100%;
   
-  .countBanner {
-    background-color: @yellow;
-    border-radius: 0 25px 25px 0;
-    align-self: flex-start;
-    padding: .25em .75em;
-    margin: 1em 0 1em -1em;
-    font-size: .75em;
+  > :first-child {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .countBanner {
+      background-color: @yellow;
+      border-radius: 0 25px 25px 0;
+      align-self: flex-start;
+      padding: .25em .75em;
+      margin: 1em 0 1em -1em;
+      font-size: .75em;
+      width: auto;
+    }
+
+    .vsBanner {
+      background-color: @red;
+      border-radius: 25px 0 0 25px;
+      align-self: flex-end;
+      padding: .25em .75em;
+      margin: 1em -1em 1em 0;
+      font-size: .75em;
+      width: auto;
+    }
   }
 
   form {
@@ -53,9 +70,23 @@
       flex: 1;
       min-width: 90%;
       max-width: 90%;
+      max-height: 100%;
       background-color: @red;
       border-radius: 15px;
       margin-right: .5em;
+      text-align: center;
+      display: flex;
+      align-items: space-around;
+      flex-direction: column;
+
+      div {
+        flex: 1;
+      }
+
+      :first-child {
+        align-self: flex-start;
+        margin: 20px 0 0 35px;
+      }
     }
 
   }

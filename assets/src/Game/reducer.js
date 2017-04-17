@@ -13,7 +13,7 @@ export function manageGame(state = {}, action) {
       return { ...state, questions: action.payload };
     case 'LAST_QUESTION_RETRIEVED':
       return { ...state, unanswered: action.payload };
-    case 'ANSWER_RETRIEVED':
+    case 'ANSWER_SUBMITTED':
       return { ...state, unanswered: null };
     case 'GAME_UPDATED':
       return { ...state, current: action.payload };  

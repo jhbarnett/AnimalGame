@@ -45,7 +45,7 @@ export function* submitAnswer(action) {
   const questionID = action.payload.id;
   const data = yield call(API.updateQuestion, questionID, action.payload);
   
-  yield put({type: 'ANSWER_RETRIEVED', payload: data});
+  yield put({type: 'ANSWER_SUBMITTED', payload: data});
   yield put({type: TYPE.NAVIGATE, payload: 'Lobby'})
   yield put(push('/'));
 }

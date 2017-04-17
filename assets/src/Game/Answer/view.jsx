@@ -3,10 +3,13 @@ import styles from './styles.less';
 
 const AnswerView = ({ animal, control, submit, unanswered, remaining }) => {
 
-  if (unanswered) {
+  if (!unanswered.answer) {
     return (
       <div className={styles.answerView}>
-        <div className={styles.countBanner}>{remaining} Questions Left</div>
+        <div>
+          <div className={styles.countBanner}>{remaining} Questions Left</div>
+          {/*<div className={styles.vsBanner}>vs. {opponent}</div>*/}
+        </div>
         <div className={styles.question}> 
           {unanswered.question}
         </div>
