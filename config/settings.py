@@ -1,5 +1,4 @@
 import os
-import psycopg2
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
