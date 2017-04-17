@@ -33,7 +33,7 @@ export function* retrieveQuestions(action) {
   const data = yield call(API.getAllQuestions, game);
   
   yield put({type: 'QUESTIONS_RETRIEVED', payload: data});
-  const lastQuestion = data.slice(-1)[0];
+  const lastQuestion = data[0];
   yield put({type: 'LAST_QUESTION_RETRIEVED', payload: lastQuestion });
 }
 

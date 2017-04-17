@@ -3,7 +3,7 @@ import styles from './styles.less';
 
 const AnswerView = ({ animal, control, submit, unanswered, remaining }) => {
 
-  if (!unanswered.answer) {
+  if (unanswered && !unanswered.answer) {
     return (
       <div className={styles.answerView}>
         <div>
