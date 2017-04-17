@@ -29,7 +29,21 @@
 
 
 
-.menuIcon img {
-  height: 100px;
-  width: auto;
+.menuIcon {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  a {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: space-around;
+
+    div {
+      width: 140px;
+      height: 15px;
+      background-color: white;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom'
-
+import Path from 'path';
 import styles from './styles.less'
 
 const MenuView = ({ routes, viewMenu, toggleMenu }) => {
@@ -26,7 +26,13 @@ const MenuView = ({ routes, viewMenu, toggleMenu }) => {
   else {
     return (
       //TODO: src relative to dev.html (production: ./webpack/Menu.png)
-      <a className={styles.menuIcon} onClick={() => toggleMenu('Menu')}><img src={'./Menu.png'}/></a>
+      <div className={styles.menuIcon}>
+        <a onClick={() => toggleMenu('Menu')}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </a>
+      </div>
     )
   }
 }
