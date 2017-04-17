@@ -54,14 +54,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.png$/,
-                use: 'url-loader?limit=100000'
-            },
-            {
-                test: /\.jpg$/,
-                use: 'file-loader'
-            },
-            {
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'url-loader?limit=10000&mimetype=application/font-woff'
             },
@@ -70,7 +62,7 @@ module.exports = {
                 loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
             },
             {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(eot|jpg|png|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file-loader'
             },
             {
