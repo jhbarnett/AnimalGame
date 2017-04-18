@@ -4,7 +4,7 @@ var BundleTracker = require('webpack-bundle-tracker')
 
 module.exports = {
     context: __dirname,
-    entry: ['babel-polyfill', './assets/src/index'], 
+    entry: ['babel-polyfill', 'whatwg-fetch', './assets/src/index'], 
     
     output: {
         path: path.resolve('./assets/public/webpack/'), 

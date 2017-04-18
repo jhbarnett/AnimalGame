@@ -12,13 +12,16 @@
 
 .circleButton(@color: transparent, @size: 5em) {
   border-radius: 50%;
-  height: @size;
-  width: @size;
+  min-height: @size;
+  min-width: @size;
   background-color: @color;
   text-align: center;
   line-height: @size;
   color: @white;
   font-size: 1em;
+  &:active {
+    background-color: @blue;
+  }
 }
 
 .input(@color: @green, @height: 1.5em) {
@@ -32,11 +35,14 @@
 } 
 
 .roundedButton(@bgcolor: transparent, @color: white, @width: 75%, @height: 1.5em) {
-  height: @height;
+  min-height: @height;
   width: @width;
   background-color: @bgcolor;
   border: 8px solid @bgcolor;
   border-radius: 15px; 
   color: @color;
-  font-size: calc(@height - .5em);  
+  font-size: calc(@height - .5em);
+  &:active {
+    background-color: transparent;
+  }
 }
